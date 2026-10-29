@@ -91,3 +91,14 @@ Project: Ghost of the Internet (Hacktoberfest 2026 · Week 4)
 - **Context**: The user inquired about whether an API key is required and how the AI mechanics function under the hood.
 - **Decision**: Architected the AI Ghost around a self-contained in-memory **BM25 retrieval-augmented synthesis engine** that executes purely client-side without any third-party API keys (OpenAI, Anthropic, or paid services).
 - **Reason**: Ensures 100% reproducibility for Hacktoberfest evaluation—judges and open-source contributors can clone and run the application instantly offline with zero configuration or cost hurdles, while retaining full RAG grounding principles.
+
+---
+
+### [2026-10-29] Decision 11: Production Deployment Configuration for Render Cloud
+- **Context**: The user requested hosting the application on Render for public demonstration and Hacktoberfest submission.
+- **Decision**:
+  1. Configured `render.yaml` Blueprint specification defining a free-tier Node web service with health check path `/api/health`, build command `node build.js`, and start command `node server.js`.
+  2. Verified `server.js` dynamic port binding (`process.env.PORT || 3000`) and host binding (`0.0.0.0`) to satisfy Render container port exposure requirements.
+  3. Added repository metadata, description, and `engines` requirements to `package.json`.
+  4. Added a 1-click "Deploy to Render" button and step-by-step instructions in `README.md`.
+- **Reason**: Enables seamless zero-config cloud deployment on Render with automatic HTTPS and continuous deployment directly from the user's GitHub repository.

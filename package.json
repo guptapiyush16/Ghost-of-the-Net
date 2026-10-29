@@ -1,10 +1,18 @@
 {
-  "name": "ghostnet",
+  "name": "ghost-of-the-internet",
   "version": "1.0.0",
+  "description": "An interactive time machine for the forgotten web, where archived websites become explorable worlds and AI brings their history back to life.",
   "private": true,
   "type": "module",
   "scripts": {
     "start": "node server.js",
     "build": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guptapiyush16/Ghost-of-the-Net.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

@@ -128,7 +128,27 @@ Creates a bundled production package in the `dist/` folder.
 
 ---
 
-## 5. Project Architecture & Directory Structure
+## 5. 🚀 Deploy to Render (Cloud Hosting)
+
+This repository includes a [`render.yaml`](render.yaml) blueprint specification for 1-click deployment on [Render](https://render.com/).
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/guptapiyush16/Ghost-of-the-Net)
+
+### Manual Setup on Render Dashboard:
+1. Sign in to [Render Dashboard](https://dashboard.render.com/).
+2. Click **New +** → **Web Service**.
+3. Select **Build and deploy from a Git repository** and connect `https://github.com/guptapiyush16/Ghost-of-the-Net`.
+4. Configure the settings:
+   - **Name**: `ghost-of-the-net`
+   - **Runtime**: `Node`
+   - **Build Command**: `node build.js`
+   - **Start Command**: `node server.js`
+   - **Instance Type**: `Free`
+5. Click **Create Web Service**! Render will deploy your retro time capsule with free automatic HTTPS.
+
+---
+
+## 6. Project Architecture & Directory Structure
 
 ```
 Ghostofthenet/

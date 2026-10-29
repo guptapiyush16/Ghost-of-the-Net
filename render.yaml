@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: ghost-of-the-internet
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: node build.js
+    startCommand: node server.js
+    envVars:
+      - key: NODE_VERSION
+        value: 20.15.0
+    healthCheckPath: /api/health
