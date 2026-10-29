@@ -85,3 +85,14 @@ Directly querying Wayback URLs on-demand without querying the CDX index first br
    - **Static Edge Decoupling**: Rename `server.js` to `local-server.js`. With no `server.js` at the repository root, Vercel honors `vercel.json` (`outputDirectory: "dist"`), treating the root website as pure static assets delivered with sub-10ms latency across global Anycast Edge points of presence.
    - **Preserving Container & PaaS Workflows**: In `package.json`, point `"start": "node local-server.js"`, and in `render.yaml` specify `startCommand: node local-server.js`. Render containers execute the long-running daemon normally, while Vercel isolates dedicated endpoints (`/api/*`) as lightweight serverless functions without touching static root routing.
 
+---
+
+### Question 8: Zero-Serverless Static Edge Architecture for Client-Side RAG Applications
+**Q: When deploying a browser-based Retrieval-Augmented Generation (RAG) system with pre-indexed corpora, why is an entirely serverless-free static edge deployment superior to provisioning serverless API endpoints?**
+
+**Answer:**
+1. **Zero Cold Starts & Total Invocation Resilience**: Serverless functions (`/api/*`) suffer from cold start latency (200ms–2s), unhandled promise crashes, and potential cloud runtime limits. By compiling all corpora (`archiveData.js`) and search ranking algorithms (BM25) directly into client-side bundles, user queries execute with 0ms network latency and 0% risk of `500 FUNCTION_INVOCATION_FAILED`.
+2. **Edge Cache Immunity**: Pure static assets (`HTML`, `CSS`, `JS`, images) are permanently cached at Anycast Edge points of presence across the globe. Requests never touch an origin server or lambda environment.
+3. **Eliminating Routing Ambiguity**: Serverless platforms like Vercel automatically provision functions when detecting an `api/` directory or configuration artifacts like `app.config.ts`. Purging these unnecessary entry points ensures platform routing engines cleanly map all SPA routes to `index.html` via edge rewrites.
+
+

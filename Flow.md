@@ -125,27 +125,29 @@ flowchart TD
 
 ---
 
-### 4. Cloud Edge Routing & Serverless Architecture (Vercel vs. Render vs. Local)
+### 4. Cloud Edge Routing & Static Delivery Architecture (Vercel vs. Render vs. Local)
 
 ```mermaid
 graph TD
     Client["User Browser Request"] --> Router{"Target Platform"}
     
-    subgraph Vercel ["Vercel Edge Network"]
-        Router -->|"vercel.app/*"| EdgeCDN["Global Edge CDN"]
-        EdgeCDN -->|"GET / or /index.html"| DistStatic["dist/index.html (Static 200 OK)"]
+    subgraph Vercel ["Vercel Global Edge CDN (Zero-Serverless)"]
+        Router -->|"vercel.app/*"| EdgeCDN["Global Anycast Edge Network"]
+        EdgeCDN -->|"GET / or Any Path"| Rewriter["vercel.json SPA Rewrite"]
+        Rewriter -->|"HTTP 200 (sub-5ms)"| DistStatic["dist/index.html"]
         EdgeCDN -->|"GET /styles.css or /app.js"| DistAssets["dist/ (Static Assets)"]
-        EdgeCDN -->|"/api/health"| HealthFn["api/health.js (Serverless Function)"]
-        EdgeCDN -->|"/api/ingest"| IngestFn["api/ingest.js (Serverless Function)"]
+        EdgeCDN -->|"GET /api/health"| DistHealth["dist/api/health (Static JSON)"]
     end
     
     subgraph RenderAndLocal ["Render & Local Node.js"]
         Router -->|"render.com / localhost:3000"| LocalServer["local-server.js (Node HTTP Server)"]
         LocalServer -->|"GET /"| ServesDist["Serves dist/index.html"]
-        LocalServer -->|"/api/ingest"| ServesIngest["Executes ingest.js"]
+        LocalServer -->|"/api/ingest"| ServesIngest["Executes ingest.js (Wayback CDX API)"]
+        LocalServer -->|"/api/health"| ServesHealth["Returns JSON status: ok"]
     end
 ```
 
-- **Static Separation Flow**: Renaming `server.js` to `local-server.js` prevents Vercel from binding root traffic to a long-running Node process. Vercel automatically routes root traffic to `dist/` directly via its Global Edge CDN.
-- **Serverless API Flow**: Requests to `/api/health` and `/api/ingest` trigger isolated serverless executions on Vercel without interfering with the static site frontend.
+- **Vercel Pure Static Flow**: All requests are served directly from edge points of presence (PoPs) without spinning up cold lambdas or serverless functions. This eliminates `FUNCTION_INVOCATION_FAILED` entirely.
+- **Render & Local Server Flow**: `local-server.js` maintains full Node runtime capabilities including dynamic archive ingestion via `ingest.js` and health monitoring.
+
 

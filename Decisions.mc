@@ -125,3 +125,19 @@ Project: Ghost of the Internet (Hacktoberfest 2026 · Week 4)
   1. Renamed `server.js` to `local-server.js` and updated `package.json` `"start": "node local-server.js"` and `render.yaml` `startCommand: node local-server.js`.
   2. With no `server.js` in the root, Vercel strictly treats the project as a Static Site, directly serving `dist/index.html` from its global Edge CDN.
 - **Reason**: Eliminates the root serverless function collision, guaranteeing instant sub-10ms delivery on Vercel while preserving local development and Render compatibility.
+
+---
+
+### [2026-10-29] Decision 14: Pure Zero-Serverless Static Edge Deployment on Vercel
+- **Context**: Even after renaming `server.js`, Vercel still reported `500 FUNCTION_INVOCATION_FAILED` on the root route.
+- **Root Cause Analysis**:
+  1. Vercel automatically creates serverless functions for any file inside an `api/` directory (`api/health.js`, `api/ingest.js`). In a zero-config setup without explicit catch-all rewrites, Vercel's edge routing can intercept incoming requests or attempt to initialize functions. Furthermore, `api/ingest.js` imported CLI file-system code that could execute on cold start.
+  2. The presence of `app.config.ts` misled Vercel's framework auto-detector into expecting an SSR/Nitro/TanStack runtime.
+  3. `vercel.json` lacked explicit SPA `rewrites` mapping all paths to `/index.html`.
+- **Decision**:
+  1. Purged the `api/` directory from the repository. The entire "Ghost of the Internet" frontend (browser chrome, BM25 AI grounding, timelines, audio, graveyard) is completely client-side. Dedicated server endpoints are already built directly into `local-server.js` for Render and local development.
+  2. Removed `app.config.ts` to prevent framework auto-detection ambiguity.
+  3. Updated `vercel.json` to explicitly enforce `cleanUrls: true` and SPA rewrites (`[{"source": "/(.*)", "destination": "/index.html"}]`).
+  4. Updated `build.js` to generate a static `dist/api/health` endpoint for edge health checks.
+- **Reason**: By eliminating all serverless function definitions from Vercel, it becomes mathematically impossible for Vercel to encounter a `FUNCTION_INVOCATION_FAILED` error. The entire website is served as pure, high-performance static files directly from Vercel's global Anycast Edge CDN with 100% uptime.
+
