@@ -160,11 +160,11 @@ This repository also includes a [`render.yaml`](render.yaml) blueprint specifica
 Ghostofthenet/
 ├── index.html          # Semantic HTML5 retro browser shell & experience views
 ├── styles.css          # Early-2000s desktop chrome, scanlines, and GeoCities styling
-├── app.js              # Virtual browser state machine, BM25 retrieval, Web Audio synth
+├── ghost-client.js     # Virtual browser state machine, BM25 retrieval, Web Audio synth
 ├── archiveData.js      # Curated historical corpus (3 worlds, multi-page, passages)
 ├── ingest.js           # Production Wayback Machine CDX ingestion pipeline
-├── server.js           # Lightweight ESM server with /api/ingest & /api/health
-├── build.js            # Automated build script bundling assets into dist/
+├── local-server.js     # Lightweight local/Render Node server with /api/ingest
+├── build.js            # Automated build script bundling static assets into dist/
 ├── Decisions.mc        # Log of architectural decisions & design rationales
 ├── Flow.md             # Function-by-function execution diagrams and traces
 ├── tech.md             # Technical interview Q&A on RAG, search, and state machines

@@ -95,4 +95,17 @@ Directly querying Wayback URLs on-demand without querying the CDX index first br
 2. **Edge Cache Immunity**: Pure static assets (`HTML`, `CSS`, `JS`, images) are permanently cached at Anycast Edge points of presence across the globe. Requests never touch an origin server or lambda environment.
 3. **Eliminating Routing Ambiguity**: Serverless platforms like Vercel automatically provision functions when detecting an `api/` directory or configuration artifacts like `app.config.ts`. Purging these unnecessary entry points ensures platform routing engines cleanly map all SPA routes to `index.html` via edge rewrites.
 
+---
+
+### Question 9: Edge Bundler Heuristics & The "Root Entrypoint" Pitfall (`dist/app.js`)
+**Q: A static web project builds to `dist/`, but Vercel logs: `Build complete — Using dist/app.js as the root entrypoint` and crashes with `500 FUNCTION_INVOCATION_FAILED`. Why does this occur, and what is the exact mechanism that resolves it?**
+
+**Answer:**
+1. **The Heuristic Engine (`@vercel/backends`)**: Vercel employs zero-config detection routines to support backend micro-services without requiring Dockerfiles or explicit serverless configurations. It scans build output directories for standard Node.js server names (`index.js`, `server.js`, `app.js`, `main.js`). When it encounters `dist/app.js`, the engine assumes it is an Express/Koa/Fastify backend server rather than a frontend script.
+2. **The Cloud Runtime Crash**: Vercel synthesizes a serverless function that imports `dist/app.js` and routes all root HTTP traffic (`/`) to it. When Node.js executes the frontend script in a server environment, any reference to DOM elements or browser Web APIs (`window`, `document`, `AudioContext`) throws an uncaught `ReferenceError: document is not defined`. Because the serverless function crashes before sending headers, Vercel returns HTTP `500 FUNCTION_INVOCATION_FAILED`.
+3. **The Dual Architectural Resolution**:
+   - **Neutralizing Entrypoint Scanning**: Rename the client script from `app.js` to a domain-specific filename like `ghost-client.js`. Because `ghost-client.js` is not a standard backend entrypoint, `@vercel/backends` completely ignores it.
+   - **Explicit Framework Deactivation**: Add `"framework": null` to `vercel.json` alongside `buildCommand: "node build.js"` and `outputDirectory: "dist"`. This instructs Vercel's orchestration pipeline to treat the target output directory strictly as immutable static assets delivered over the CDN, completely bypassing the serverless function compiler.
+
+
 

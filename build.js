@@ -5,7 +5,7 @@ await mkdir('dist/api', { recursive: true });
 await Promise.all([
   cp('index.html', 'dist/index.html'),
   cp('styles.css', 'dist/styles.css'),
-  cp('app.js', 'dist/app.js'),
+  cp('ghost-client.js', 'dist/ghost-client.js'),
   cp('archiveData.js', 'dist/archiveData.js'),
   cp('logo.png', 'dist/logo.png'),
   cp('public', 'dist/public', { recursive: true }),

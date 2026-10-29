@@ -141,3 +141,19 @@ Project: Ghost of the Internet (Hacktoberfest 2026 · Week 4)
   4. Updated `build.js` to generate a static `dist/api/health` endpoint for edge health checks.
 - **Reason**: By eliminating all serverless function definitions from Vercel, it becomes mathematically impossible for Vercel to encounter a `FUNCTION_INVOCATION_FAILED` error. The entire website is served as pure, high-performance static files directly from Vercel's global Anycast Edge CDN with 100% uptime.
 
+---
+
+### [2026-10-29] Decision 15: Resolving `@vercel/backends` Root Entrypoint Collision (`app.js`)
+- **Context**: Vercel build log explicitly revealed: `✓ Build complete — Using dist/app.js as the root entrypoint`. Visiting the site continued to trigger `500 FUNCTION_INVOCATION_FAILED`.
+- **Root Cause Analysis**:
+  1. Vercel's zero-config backend detection engine (`@vercel/backends`) automatically scans output directories for known server filenames: `index.js`, `server.js`, `app.js`, and `main.js`.
+  2. Because our client-side script was named `app.js`, Vercel misidentified it as a Node.js/Express backend server and wrapped it in a Serverless Function to handle the root path `/`.
+  3. When Vercel executed `dist/app.js` in a Node.js cloud runtime, browser-only APIs (`document`, `window`, `AudioContext`) threw uncaught `ReferenceError: document is not defined`, crashing the serverless invocation.
+- **Decision**:
+  1. Renamed `app.js` to `ghost-client.js`. Because `ghost-client.js` is not a recognized server entrypoint, `@vercel/backends` ignores it.
+  2. Updated `index.html` to load `<script src="/ghost-client.js" type="module"></script>`.
+  3. Updated `build.js` to copy `ghost-client.js` to `dist/ghost-client.js`.
+  4. Added `"framework": null` to `vercel.json` to disable automatic backend detection.
+- **Reason**: Permanently neutralizes backend entrypoint interception, ensuring Vercel serves the application strictly as a high-performance static website from its Global Edge CDN.
+
+

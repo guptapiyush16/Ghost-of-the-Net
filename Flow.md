@@ -45,8 +45,8 @@ flowchart TD
     end
 
     subgraph User Exploration Loop
-        A[User Enters Web App] --> B[Server serves index.html, styles.css, app.js, archiveData.js]
-        B --> C[app.js Initializes]
+        A[User Enters Web App] --> B[Server serves index.html, styles.css, ghost-client.js, archiveData.js]
+        B --> C[ghost-client.js Initializes]
         C --> D[Hydrate archiveWorlds & Build In-Memory BM25 Index]
         C --> E[Mount Retro Browser Shell & Render Default World]
         WG -.-> D
@@ -135,7 +135,7 @@ graph TD
         Router -->|"vercel.app/*"| EdgeCDN["Global Anycast Edge Network"]
         EdgeCDN -->|"GET / or Any Path"| Rewriter["vercel.json SPA Rewrite"]
         Rewriter -->|"HTTP 200 (sub-5ms)"| DistStatic["dist/index.html"]
-        EdgeCDN -->|"GET /styles.css or /app.js"| DistAssets["dist/ (Static Assets)"]
+        EdgeCDN -->|"GET /styles.css or /ghost-client.js"| DistAssets["dist/ (Static Assets)"]
         EdgeCDN -->|"GET /api/health"| DistHealth["dist/api/health (Static JSON)"]
     end
     
