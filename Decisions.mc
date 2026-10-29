@@ -74,3 +74,13 @@ Project: Ghost of the Internet (Hacktoberfest 2026 · Week 4)
 - **Context**: The user requested a polished README and intuitive conceptual clarification of "Ingestion" and "The Original Website".
 - **Decision**: Created [README.md](file:///c:/PeassBeReasonable/Hacktoberfest/Ghostofthenet/README.md) with comprehensive architecture schematics, Quickstart guide, feature delivery matrix, and ethics statement. Explained ingestion using the archival library restoration analogy.
 - **Reason**: Ensures open-source reviewers, judges, and users can immediately understand the project purpose, architecture, and reproducibility.
+
+---
+
+### [2026-10-29] Decision 09: User Brand Asset Integration, Halloween Aesthetic & Digital Graveyard Tombstones
+- **Context**: The user provided a custom cute illustrated skull image, requested its widespread use as the official website logo, asked for a Halloween mood (pumpkins, cute ghosts), and requested tombstones on the website.
+- **Decision**:
+  1. Saved the user-uploaded skull artwork as `logo.png` and embedded it across the site: Favicon, site masthead brand, retro browser window title bar, Ghost chat avatar, right rail widget, Evidence Mode modal, and forum post author avatars.
+  2. Added Halloween atmosphere: pumpkin badges, floating cute ghosts (`👻`), jack-o'-lanterns (`🎃`), corner cobwebs (`🕸️`), and a toggleable "Spooky: ON/OFF" theme mode with warm orange/purple lighting.
+  3. Designed and added **"The Digital Graveyard · Forgotten Tombstones of the Early Web"** into the Last Online view, featuring 6 arched 3D stone tombstones commemorating Dial-Up 56k, GeoCities, Netscape Navigator, Macromedia Flash, AIM, and The Guestbook. Each tombstone features an interactive **"🕯️ Light a Candle (Pay Respects)"** button with animated flickering flame and memorial chime synthesizer.
+- **Reason**: Perfectly bridges the user's artistic branding and Halloween aesthetic with the core digital archaeology theme of the project.
