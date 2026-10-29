@@ -188,6 +188,16 @@ Project: Ghost of the Internet (Hacktoberfest 2026 · Week 4)
 - **Decision**: In accordance with system instructions, reported the browser driver constraint and asked the user how they wish to proceed, while cross-verifying complete system health and interactive logic via the deterministic 45-point test runner (`npm test`) and live edge probes.
 - **Reason**: Guarantees transparency while validating all 5 MVP features through alternative deterministic automated harnesses.
 
+---
+
+### [2026-10-29] Decision 19: Comprehensive Devpost & DEV.to Hacktoberfest Submission Documentation
+- **Context**: The user provided their submission draft for the Hacktoberfest Open-Source AI Challenge (Week 4: Ghost in the Machine) and requested creating a complete, polished Devpost submission post.
+- **Decision**:
+  1. Authored `DEVPOST.md` incorporating all implemented engineering components, actual live production URLs (`https://ghostofthenet.vercel.app/`), GitHub repository metadata, and architecture diagrams.
+  2. Formatted according to official Devpost / DEV.to judging rubrics: Inspiration, What it does, How we built it, Technical challenges & breakthroughs (Vercel backend entrypoint resolution, high-DPI scanline contrast, epistemic boundary enforcement), Accomplishments, Learnings, and Future Roadmap.
+- **Reason**: Provides a submission artifact ready for instant publishing with high presentation quality and technical depth.
+
+
 
 
 

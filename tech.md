@@ -140,6 +140,17 @@ Directly querying Wayback URLs on-demand without querying the CDX index first br
    - **Logic & State Layer (Deterministic Unit/Integration Tests)**: Inverted indexes, BM25 mathematical scoring, and history navigation state machines (`historyStack` pointer shifts) run in pure headless Node environments, validating business logic in milliseconds.
    - **Visual/Aesthetic Layer**: Manual verification on real user hardware coupled with CSS regression tests ensures accessibility, high contrast, and responsive layout across standard viewports.
 
+---
+
+### Question 13: Offline-First In-Browser RAG vs. Cloud Vector Pipelines for Digital Archives
+**Q: What are the engineering and ethical tradeoffs of implementing Retrieval-Augmented Generation (RAG) purely in-browser using mathematical BM25 and structured JSON corpora versus deploying a cloud-hosted vector database (e.g., Pinecone/Milvus) with remote LLM APIs?**
+
+**Answer:**
+1. **Zero Marginal Cost & Infinite Scalability**: Traditional RAG architectures incur recurring operational costs (vector storage fees, embedding computation, and token ingress/egress). In-browser BM25 executes on client CPU cores with $O(1)$ memory overhead and zero network requests, allowing an archived project to remain accessible indefinitely without funding or API keys.
+2. **Deterministic Provenance vs. Vector Drift**: Dense vector embeddings can suffer from semantic drift—returning passages that are conceptually related but lack the exact historical keywords, names, or forum user handles. BM25 exact lexical term matching guarantees that user queries for specific handles (`ghost_user_97`) or games (`Diablo II`) retrieve the exact surviving post with verifiable provenance.
+3. **Privacy, Longevity, and Archival Ethics**: Digital archives belong to public cultural heritage. Sending historical user conversations through third-party cloud LLM APIs poses privacy risks and creates a dependency on commercial platforms that may discontinue service. An offline-first, client-side RAG design preserves historical artifacts in an inspectable, permanent, and open-source format.
+
+
 
 
 
