@@ -57,7 +57,7 @@ flowchart TD
         J -->|Click Page Link| K[Push New State to historyStack & Increment historyIndex]
         J -->|Click Back Button| L[Decrement historyIndex & Retrieve Target State]
         J -->|Click Forward Button| M[Increment historyIndex & Retrieve Target State]
-        J -->|Click Reload Button| N[Trigger CRT Flicker & Re-simulate Transfer]
+        J -->|Click Reload Button| N[Re-simulate Network Transfer]
         K --> O[simulatePageTransfer: Progress Bar & Status Text Updates]
         L --> O
         M --> O

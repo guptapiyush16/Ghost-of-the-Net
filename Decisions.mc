@@ -156,4 +156,15 @@ Project: Ghost of the Internet (Hacktoberfest 2026 · Week 4)
   4. Added `"framework": null` to `vercel.json` to disable automatic backend detection.
 - **Reason**: Permanently neutralizes backend entrypoint interception, ensuring Vercel serves the application strictly as a high-performance static website from its Global Edge CDN.
 
+---
+
+### [2026-10-29] Decision 16: Removal of CRT Phosphor Scanline Overlay
+- **Context**: The user requested removing the CRT lines effect across the application.
+- **Decision**:
+  1. Removed the `body::before` scanlines pseudo-element overlay from `styles.css` (`linear-gradient` with 3px raster line repetition and RGB color aberration).
+  2. Removed the `📺 CRT: ON` toggle pill from the top system strip in `index.html`.
+  3. Preserved all other retro aesthetics, including Windows 98/2000 chrome borders, classic typography, GeoCities guestbook styling, 3D stone graveyard tombstones, and Halloween theme.
+- **Reason**: Enhances text legibility and visual sharpness on high-DPI modern displays without distracting dark horizontal lines, while retaining authentic retro UI framing and interactions.
+
+
 

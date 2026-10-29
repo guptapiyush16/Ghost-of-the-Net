@@ -107,5 +107,16 @@ Directly querying Wayback URLs on-demand without querying the CDX index first br
    - **Neutralizing Entrypoint Scanning**: Rename the client script from `app.js` to a domain-specific filename like `ghost-client.js`. Because `ghost-client.js` is not a standard backend entrypoint, `@vercel/backends` completely ignores it.
    - **Explicit Framework Deactivation**: Add `"framework": null` to `vercel.json` alongside `buildCommand: "node build.js"` and `outputDirectory: "dist"`. This instructs Vercel's orchestration pipeline to treat the target output directory strictly as immutable static assets delivered over the CDN, completely bypassing the serverless function compiler.
 
+---
+
+### Question 10: Balancing Retro Skeuomorphism vs. WCAG Text Contrast (CRT Scanline Elimination)
+**Q: While retro CRT scanline shaders evoke vintage monitors, how do persistent raster overlays impact accessibility and typography, and how should retro web applications handle visual clarity?**
+
+**Answer:**
+1. **The Raster Contrast Penalty**: Synthetic scanline overlays (e.g., alternating transparent and semi-opaque horizontal strips via CSS gradients) fragment character glyphs. On modern high-DPI displays (Retina/4K), a 2px–3px dark stripe physically bisects 11px–12px body text, reducing effective contrast ratio below the WCAG 2.1 AA minimum threshold of 4.5:1.
+2. **Visual Fatigue & Moire Artifacts**: Fixed raster layers cause subpixel interference (aliasing and moire fringing) when users scroll content vertically beneath a static overlay.
+3. **Architectural Solution**: Authenticity is best achieved through structural framing (beveled window titlebars, inset address bars, monospace system strips, authentic palettes, and audio cues) rather than degrading typography with permanent scanline filters. Purging the raster pseudo-element provides crisp, accessible text rendering across all screens while preserving vintage aesthetic immersion.
+
+
 
 
