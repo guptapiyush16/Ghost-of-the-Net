@@ -166,5 +166,20 @@ Project: Ghost of the Internet (Hacktoberfest 2026 · Week 4)
   3. Preserved all other retro aesthetics, including Windows 98/2000 chrome borders, classic typography, GeoCities guestbook styling, 3D stone graveyard tombstones, and Halloween theme.
 - **Reason**: Enhances text legibility and visual sharpness on high-DPI modern displays without distracting dark horizontal lines, while retaining authentic retro UI framing and interactions.
 
+---
+
+### [2026-10-29] Decision 17: Comprehensive Automated End-to-End Verification Suite
+- **Context**: The user requested an end-to-end verification of the live website, evaluating what is working and what is not.
+- **Decision**:
+  1. Created an automated 45-point test harness (`test-e2e.js`) spanning 5 core functional suites:
+     - **Corpus Integrity**: Validating 3 worlds, 8 explorable documents, 10 RAG passages, and timeline density curves.
+     - **BM25 Search & Grounding Engine**: Verifying keyword tokenization, IDF calculations, dual mode responses, and epistemic uncertainty guardrails.
+     - **Archaeological Parsing & Privacy Ethics**: Testing HTML unwrapping and PII redaction (email/phone number masking).
+     - **Virtual Browser State Machine**: Testing history stack pushes, truncations, and boundary navigation controls.
+     - **Live Production Endpoints**: Live HTTP 200 checks on Vercel edge deployment for HTML, CSS, client JS, data, images, and health endpoints, verifying CRT scanline absence.
+  2. Executed test suite with 45 passing tests (0 failures).
+- **Reason**: Ensures production software engineering rigor and regression-free delivery for Hacktoberfest 2026 submission.
+
+
 
 

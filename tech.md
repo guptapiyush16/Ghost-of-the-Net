@@ -117,6 +117,18 @@ Directly querying Wayback URLs on-demand without querying the CDX index first br
 2. **Visual Fatigue & Moire Artifacts**: Fixed raster layers cause subpixel interference (aliasing and moire fringing) when users scroll content vertically beneath a static overlay.
 3. **Architectural Solution**: Authenticity is best achieved through structural framing (beveled window titlebars, inset address bars, monospace system strips, authentic palettes, and audio cues) rather than degrading typography with permanent scanline filters. Purging the raster pseudo-element provides crisp, accessible text rendering across all screens while preserving vintage aesthetic immersion.
 
+---
+
+### Question 11: Automated End-to-End Testing Strategies for Client-Side Retrieval-Augmented Generation (RAG)
+**Q: How do you design an automated, deterministic test suite for an in-browser RAG system that validates retrieval ranking, citation provenance, and epistemic boundaries without relying on stochastic LLM evaluation?**
+
+**Answer:**
+1. **Deterministic Lexical Benchmarking**: Because BM25 ranking is purely mathematical ($k_1=1.5, b=0.75$), retrieval assertions can be verified deterministically. Test suites evaluate queries against known ground-truth passages, asserting that relevant historical documents exceed minimum numerical relevance thresholds while out-of-domain terms score below strict baseline floors ($<0.6$).
+2. **Epistemic Guardrail Unit Tests**: To ensure the system never hallucinates answers when historical records terminate, the test suite injects queries containing modern or unindexed terminology (e.g., modern cryptocurrencies, modern public figures). The test asserts that the epistemic gate triggers a refusal to speculate and correctly outputs the temporal boundaries of surviving captures.
+3. **Multi-Stage Corpus & Privacy Verification**: Automated suites must validate corpus structural invariants (every passage contains a valid `worldId`, `author`, `date`, and `keywords`) and verify that historical extraction parsers successfully redact PII (emails and phone numbers) before data reaches client memory.
+4. **Edge CDN Contract Probing**: The test pipeline performs asynchronous HTTP GET probes against the live CDN distribution (`ghostofthenet.vercel.app`), verifying that status codes, MIME types (`text/html`, `application/javascript`, `text/css`, `image/png`), and cache headers match production service-level contracts.
+
+
 
 
 

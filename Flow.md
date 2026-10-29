@@ -150,4 +150,25 @@ graph TD
 - **Vercel Pure Static Flow**: All requests are served directly from edge points of presence (PoPs) without spinning up cold lambdas or serverless functions. This eliminates `FUNCTION_INVOCATION_FAILED` entirely.
 - **Render & Local Server Flow**: `local-server.js` maintains full Node runtime capabilities including dynamic archive ingestion via `ingest.js` and health monitoring.
 
+---
+
+### 5. Automated Verification & End-to-End Test Execution Flow (`test-e2e.js`)
+
+```mermaid
+graph TD
+    TestRunner["node test-e2e.js"] --> Suite1["Suite 1: Corpus Data Verification (Worlds, Pages, Passages)"]
+    TestRunner --> Suite2["Suite 2: BM25 Lexical Ranking & Epistemic Uncertainty Fallback"]
+    TestRunner --> Suite3["Suite 3: Archaeology HTML Parser & PII Masking Filter"]
+    TestRunner --> Suite4["Suite 4: Retro Browser Navigation State Machine (Stack / Boundaries)"]
+    TestRunner --> Suite5["Suite 5: Live Production Edge Probes (ghostofthenet.vercel.app)"]
+    
+    Suite1 --> Assertions["45 Automated Assertions"]
+    Suite2 --> Assertions
+    Suite3 --> Assertions
+    Suite4 --> Assertions
+    Suite5 --> Assertions
+    Assertions --> ExitCode["Exit Code 0 (All Tests Passed)"]
+```
+
+
 
