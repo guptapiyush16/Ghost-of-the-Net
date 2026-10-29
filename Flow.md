@@ -122,3 +122,30 @@ flowchart TD
 - Evaluates epistemic boundary: if no results or top score $< 0.6$, rejects fabrication and reports the date boundaries of surviving archives.
 - Synthesizes response in **Historian Mode** (objective with quotes) or **Community Echo Mode** (atmospheric subculture tone).
 - Injects typewriter streaming indicator and outputs result into `#chatFeed`.
+
+---
+
+### 4. Cloud Edge Routing & Serverless Architecture (Vercel vs. Render vs. Local)
+
+```mermaid
+graph TD
+    Client["User Browser Request"] --> Router{"Target Platform"}
+    
+    subgraph Vercel ["Vercel Edge Network"]
+        Router -->|"vercel.app/*"| EdgeCDN["Global Edge CDN"]
+        EdgeCDN -->|"GET / or /index.html"| DistStatic["dist/index.html (Static 200 OK)"]
+        EdgeCDN -->|"GET /styles.css or /app.js"| DistAssets["dist/ (Static Assets)"]
+        EdgeCDN -->|"/api/health"| HealthFn["api/health.js (Serverless Function)"]
+        EdgeCDN -->|"/api/ingest"| IngestFn["api/ingest.js (Serverless Function)"]
+    end
+    
+    subgraph RenderAndLocal ["Render & Local Node.js"]
+        Router -->|"render.com / localhost:3000"| LocalServer["local-server.js (Node HTTP Server)"]
+        LocalServer -->|"GET /"| ServesDist["Serves dist/index.html"]
+        LocalServer -->|"/api/ingest"| ServesIngest["Executes ingest.js"]
+    end
+```
+
+- **Static Separation Flow**: Renaming `server.js` to `local-server.js` prevents Vercel from binding root traffic to a long-running Node process. Vercel automatically routes root traffic to `dist/` directly via its Global Edge CDN.
+- **Serverless API Flow**: Requests to `/api/health` and `/api/ingest` trigger isolated serverless executions on Vercel without interfering with the static site frontend.
+

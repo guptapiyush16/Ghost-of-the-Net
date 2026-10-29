@@ -72,3 +72,16 @@ Directly querying Wayback URLs on-demand without querying the CDX index first br
 2. **Corpus-Level RAG vs. Single-Page Scraping**: Answering questions such as *"Why did everyone leave this forum?"* or *"What did people care about here?"* requires retrieving evidence across an entire corpus of 30–100 interconnected discussions. If retrieval depended on synchronous scraping, an AI chat query would have to initiate 50+ network roundtrips to `archive.org` sequentially, taking 2 to 3 minutes and hitting HTTP 429 rate limits.
 3. **Timeline & Activity Fade Synthesis**: Feature 4 ("The Last Online") relies on calculating post density and decay curves over months and years. This statistical distribution can only be computed by inspecting the metadata of all captures in the CDX index.
 4. **Latency & Resilience**: Live requests to public web archives typically take 2 to 6 seconds per page. The production solution is a **Read-Through Cache Pattern**: the CDX index is queried once to discover the archive map and pre-populate an in-memory or SQLite index, enabling sub-10ms browsing and instant AI retrieval.
+
+---
+
+### Question 7: Debugging `500 FUNCTION_INVOCATION_FAILED` on Edge/Serverless Platforms (Vercel Build Auto-Detection)
+**Q: During deployment to Vercel, a Node.js project that builds clean static output to `dist/` fails with HTTP `500 FUNCTION_INVOCATION_FAILED` when requesting the root `/`. What causes this failure, and how is it architecturally resolved without sacrificing containerized deployments on platforms like Render?**
+
+**Answer:**
+1. **The Root Cause (Auto-Detection Collision)**: Vercel inspects project directory structures at build time. If a file named `server.js` exists in the repository root alongside a `package.json`, Vercel's Node runtime assumes the project is a full-stack custom server and synthesizes a Serverless Function wrapper that routes all incoming root requests (`/(.*)`) to `server.js`.
+2. **The Invocation Failure**: Traditional standalone Node servers initialize listeners (`server.listen(port, '0.0.0.0')`). However, Vercel Serverless Functions expect an exported request handler function: `export default function handler(req, res)` or `module.exports = (req, res) => ...`. Because `server.js` was running a persistent socket listener instead of exporting an event handler, the serverless invocation timed out, resulting in a cloud-level `500 FUNCTION_INVOCATION_FAILED`.
+3. **The Multi-Platform Architectural Solution**:
+   - **Static Edge Decoupling**: Rename `server.js` to `local-server.js`. With no `server.js` at the repository root, Vercel honors `vercel.json` (`outputDirectory: "dist"`), treating the root website as pure static assets delivered with sub-10ms latency across global Anycast Edge points of presence.
+   - **Preserving Container & PaaS Workflows**: In `package.json`, point `"start": "node local-server.js"`, and in `render.yaml` specify `startCommand: node local-server.js`. Render containers execute the long-running daemon normally, while Vercel isolates dedicated endpoints (`/api/*`) as lightweight serverless functions without touching static root routing.
+

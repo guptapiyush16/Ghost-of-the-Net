@@ -8,6 +8,7 @@ await Promise.all([
   cp('app.js', 'dist/app.js'),
   cp('archiveData.js', 'dist/archiveData.js'),
   cp('logo.png', 'dist/logo.png'),
+  cp('public', 'dist/public', { recursive: true }),
   cp('public/manus-routes.json', 'dist/manus-routes.json')
 ]);
 console.log('Built GHOST.NET into dist/');

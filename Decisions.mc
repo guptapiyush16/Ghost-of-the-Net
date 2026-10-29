@@ -115,3 +115,13 @@ Project: Ghost of the Internet (Hacktoberfest 2026 · Week 4)
   3. Maintained backward compatibility with `server.js` (for Render/local Node) while enabling global edge static CDN delivery and serverless API execution on Vercel.
   4. Added 1-click "Deploy with Vercel" button and setup documentation in `README.md`.
 - **Reason**: Allows instant, zero-configuration deployment to Vercel's global edge network with automatic SSL, preview URLs for pull requests, and sub-second cold starts.
+
+---
+
+### [2026-10-29] Decision 13: Resolving Vercel FUNCTION_INVOCATION_FAILED Error
+- **Context**: On initial Vercel deployment, visiting `/` triggered `500 FUNCTION_INVOCATION_FAILED`.
+- **Root Cause Analysis**: Vercel's zero-config Node builder automatically detects any file named `server.js` in the project root and attempts to route root HTTP traffic `/(.*)` to it as a Serverless Function. Because `server.js` called `server.listen(port, '0.0.0.0')` rather than exporting a serverless handler, Vercel's runtime threw a function invocation timeout.
+- **Decision**:
+  1. Renamed `server.js` to `local-server.js` and updated `package.json` `"start": "node local-server.js"` and `render.yaml` `startCommand: node local-server.js`.
+  2. With no `server.js` in the root, Vercel strictly treats the project as a Static Site, directly serving `dist/index.html` from its global Edge CDN.
+- **Reason**: Eliminates the root serverless function collision, guaranteeing instant sub-10ms delivery on Vercel while preserving local development and Render compatibility.

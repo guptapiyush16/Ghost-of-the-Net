@@ -5,7 +5,7 @@ services:
     plan: free
     region: oregon
     buildCommand: node build.js
-    startCommand: node server.js
+    startCommand: node local-server.js
     envVars:
       - key: NODE_VERSION
         value: 20.15.0
