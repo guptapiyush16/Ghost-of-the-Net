@@ -78,9 +78,16 @@ Project: Ghost of the Internet (Hacktoberfest 2026 · Week 4)
 ---
 
 ### [2026-10-29] Decision 09: User Brand Asset Integration, Halloween Aesthetic & Digital Graveyard Tombstones
-- **Context**: The user provided a custom cute illustrated skull image, requested its widespread use as the official website logo, asked for a Halloween mood (pumpkins, cute ghosts), and requested tombstones on the website.
+- **Context**: The user provided a custom cute skull image, requested its widespread use as the official website logo, asked for a Halloween mood (pumpkins, cute ghosts), and requested tombstones on the website.
 - **Decision**:
   1. Saved the user-uploaded skull artwork as `logo.png` and embedded it across the site: Favicon, site masthead brand, retro browser window title bar, Ghost chat avatar, right rail widget, Evidence Mode modal, and forum post author avatars.
   2. Added Halloween atmosphere: pumpkin badges, floating cute ghosts (`👻`), jack-o'-lanterns (`🎃`), corner cobwebs (`🕸️`), and a toggleable "Spooky: ON/OFF" theme mode with warm orange/purple lighting.
   3. Designed and added **"The Digital Graveyard · Forgotten Tombstones of the Early Web"** into the Last Online view, featuring 6 arched 3D stone tombstones commemorating Dial-Up 56k, GeoCities, Netscape Navigator, Macromedia Flash, AIM, and The Guestbook. Each tombstone features an interactive **"🕯️ Light a Candle (Pay Respects)"** button with animated flickering flame and memorial chime synthesizer.
 - **Reason**: Perfectly bridges the user's artistic branding and Halloween aesthetic with the core digital archaeology theme of the project.
+
+---
+
+### [2026-10-29] Decision 10: Zero-API-Key Architecture for Hacktoberfest Demonstration
+- **Context**: The user inquired about whether an API key is required and how the AI mechanics function under the hood.
+- **Decision**: Architected the AI Ghost around a self-contained in-memory **BM25 retrieval-augmented synthesis engine** that executes purely client-side without any third-party API keys (OpenAI, Anthropic, or paid services).
+- **Reason**: Ensures 100% reproducibility for Hacktoberfest evaluation—judges and open-source contributors can clone and run the application instantly offline with zero configuration or cost hurdles, while retaining full RAG grounding principles.
