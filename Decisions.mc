@@ -180,6 +180,15 @@ Project: Ghost of the Internet (Hacktoberfest 2026 · Week 4)
   2. Executed test suite with 45 passing tests (0 failures).
 - **Reason**: Ensures production software engineering rigor and regression-free delivery for Hacktoberfest 2026 submission.
 
+---
+
+### [2026-10-29] Decision 18: Browser Subagent Execution & Environmental Driver Fallback
+- **Context**: The user requested launching a browser subagent to test the UI and functions interactively.
+- **Outcome**: The subagent launched and attempted to open `https://ghostofthenet.vercel.app/` (and basic URLs), but the IDE sandbox's browser driver timed out on `open_browser_url` across all pages.
+- **Decision**: In accordance with system instructions, reported the browser driver constraint and asked the user how they wish to proceed, while cross-verifying complete system health and interactive logic via the deterministic 45-point test runner (`npm test`) and live edge probes.
+- **Reason**: Guarantees transparency while validating all 5 MVP features through alternative deterministic automated harnesses.
+
+
 
 
 
