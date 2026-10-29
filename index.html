@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#251b17" />
+    <meta name="description" content="Ghost of the Internet — An interactive Halloween time machine for the forgotten web, where archived websites become explorable worlds and AI brings their history back to life." />
+    <title>Ghost of the Internet :: Halloween Retro Time Capsule</title>
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="halloween-theme">
+    <a class="skip-link" href="#main-content">skip to main content</a>
+
+    <!-- Floating Spooky Companions -->
+    <div class="floating-spook spook-ghost" id="spookGhost" title="Boo! I'm an archived spirit 👻">👻</div>
+    <div class="floating-spook spook-pumpkin" id="spookPumpkin" title="Click me for a spooky treat! 🎃">🎃</div>
+    <div class="cobweb-top-right" aria-hidden="true">🕸️</div>
+
+    <!-- Top Utility & System Strip -->
+    <div class="system-strip">
+      <div class="system-strip-inner">
+        <span class="system-title">🎃 GHOST OF THE INTERNET · HALLOWEEN ARCHIVE SPECIAL 👻</span>
+        <span class="system-clock">THE GRAVEYARD SHIFT · 03:00 AM UTC</span>
+        <div class="system-controls">
+          <button type="button" class="ctrl-pill" id="toggleSpooky">🎃 Spooky: ON</button>
+          <button type="button" class="ctrl-pill" id="toggleAudio">🔇 Sound: OFF</button>
+          <button type="button" class="ctrl-pill" id="toggleCrt">📺 CRT: ON</button>
+          <span class="utility-online"><i class="led"></i> ARCHIVE ONLINE</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-container" id="top">
+      <!-- Site Masthead -->
+      <header class="site-header">
+        <div class="masthead">
+          <a class="brand" href="#top" aria-label="Ghost of the Internet home">
+            <div class="brand-logo-frame">
+              <img src="/logo.png" alt="Ghost of the Internet Skull Logo" class="brand-skull-logo" />
+            </div>
+            <span class="brand-copy">
+              <strong>GHOST<span>.</span>NET 🎃</strong>
+              <small>the internet's attic · retro time machine</small>
+            </span>
+          </a>
+          <div class="masthead-center">
+            <span class="tagline">where archived websites become explorable worlds</span>
+            <p class="archivist-note">AI-generated ghosts grounded in surviving web evidence · zero hallucinated history</p>
+          </div>
+          <div class="header-search">
+            <label for="siteSearch">search archive corpus (BM25)</label>
+            <div class="search-input-group">
+              <input id="siteSearch" placeholder="e.g. dial-up, diablo, school, goodbye" />
+              <button type="button" id="headerSearchBtn" class="jump-ghost">search</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mode Navigation Tabs -->
+        <nav class="mode-tabs" aria-label="Product modes">
+          <button class="mode-tab is-active" data-panel="browserPanel" type="button">
+            <span>01</span> 🌐 retro browser & worlds
+          </button>
+          <button class="mode-tab" data-panel="ghostPanel" type="button">
+            <span>02</span> <img src="/logo.png" alt="" class="tab-skull-icon" /> ask the ghost (RAG)
+          </button>
+          <button class="mode-tab" data-panel="lastPanel" type="button">
+            <span>03</span> 🪦 digital graveyard & fade
+          </button>
+        </nav>
+      </header>
+
+      <!-- Feature 1: Lost Worlds Portal (3 Curated Collections) -->
+      <section class="lost-worlds-section" aria-label="Curated historical collections">
+        <div class="section-title-bar">
+          <h2>🎃 FEATURE 1: LOST WORLDS — ENTER A FORGOTTEN DIGITAL RUIN</h2>
+          <span class="badge">3 PRESERVED SECTORS</span>
+        </div>
+        <div class="world-cards-grid">
+          <!-- World 1: The Nexus 2003 -->
+          <article class="world-selector-card is-selected" data-world="nexus_gaming">
+            <div class="world-card-badge">FORUM COMMUNITY 🎃</div>
+            <div class="world-card-icon">🎮</div>
+            <h3>The Nexus 2003</h3>
+            <p>A forgotten gaming forum discussing Diablo II, 56k tweaks, and the sudden quiet of August 2003.</p>
+            <div class="world-meta">
+              <span>📅 Capture: 14 Aug 2003</span>
+              <span>💬 1,284 posts indexed</span>
+            </div>
+            <div class="world-card-action">ENTER THIS WORLD →</div>
+          </article>
+
+          <!-- World 2: Pixel Witch's Cyber Attic -->
+          <article class="world-selector-card" data-world="pixel_witch_attic">
+            <div class="world-card-badge">GEOCITIES HOMEPAGE ✦</div>
+            <div class="world-card-icon">🧙‍♀️</div>
+            <h3>Pixel Witch's Cyber Attic</h3>
+            <p>GeoCities Area51 personal homepage complete with glitter text, visitor counter, guestbook, and fallen hero shrine.</p>
+            <div class="world-meta">
+              <span>📅 Capture: 12 Oct 2003</span>
+              <span>✎ 19 guestbook signs</span>
+            </div>
+            <div class="world-card-action">ENTER THIS WORLD →</div>
+          </article>
+
+          <!-- World 3: Starlight Anime Webring -->
+          <article class="world-selector-card" data-world="starlight_anime">
+            <div class="world-card-badge">FAN WEBRING & HUB 🌌</div>
+            <div class="world-card-icon">👻</div>
+            <h3>Starlight Anime Webring</h3>
+            <p>Early anime fan community featuring Lain & Bebop reviews, concluding with the webmaster's farewell broadcast.</p>
+            <div class="world-meta">
+              <span>📅 Capture: 31 Dec 2003</span>
+              <span>⭐ 38 ring sites</span>
+            </div>
+            <div class="world-card-action">ENTER THIS WORLD →</div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Main Layout Grid -->
+      <main id="main-content" class="page-grid">
+        <!-- Center Primary Content Area -->
+        <section class="primary-stage" aria-label="Active experience view">
+
+          <!-- PANEL 1: Feature 2 - Retro Browser Shell -->
+          <div class="panel panel-browser is-visible" id="browserPanel" data-panel-view>
+            <div class="retro-window-frame">
+              <!-- Window Chrome Title Bar -->
+              <div class="window-title-bar">
+                <div class="title-left">
+                  <span class="window-logo"><img src="/logo.png" alt="Skull Logo" class="win-skull-logo" /></span>
+                  <span id="browserTitleDisplay">The Nexus :: Main Board Index — [Retro Navigator 4.0]</span>
+                </div>
+                <div class="window-controls">
+                  <button type="button" class="win-btn" aria-label="Minimize" data-toast="Window minimized to retro taskbar.">_</button>
+                  <button type="button" class="win-btn" aria-label="Maximize" data-toast="Already maximized in viewport.">□</button>
+                  <button type="button" class="win-btn win-close" aria-label="Close" data-toast="Session preserved in memory.">×</button>
+                </div>
+              </div>
+
+              <!-- Browser Toolbar -->
+              <div class="browser-toolbar">
+                <div class="toolbar-buttons">
+                  <button type="button" class="tool-btn" id="btnBack" title="Go back in history" disabled>
+                    <span class="icon">◀</span> Back
+                  </button>
+                  <button type="button" class="tool-btn" id="btnForward" title="Go forward in history" disabled>
+                    <span class="icon">▶</span> Fwd
+                  </button>
+                  <button type="button" class="tool-btn" id="btnRefresh" title="Refresh page">
+                    <span class="icon">↺</span> Reload
+                  </button>
+                  <button type="button" class="tool-btn" id="btnHome" title="Home world index">
+                    <span class="icon">⌂</span> Home
+                  </button>
+                  <button type="button" class="tool-btn source-trigger" data-source="nex_01" title="Evidence map">
+                    <span class="icon">📜</span> Source
+                  </button>
+                </div>
+                <!-- Address Bar -->
+                <div class="address-bar-group">
+                  <span class="addr-label">Location:</span>
+                  <input type="text" id="virtualUrlBar" value="http://www.nexus-gaming.net/forums/thread_0047.html" readonly />
+                  <button type="button" class="go-btn" data-toast="Simulated DNS lookup verified.">Go</button>
+                </div>
+              </div>
+
+              <!-- Wayback Provenance Banner -->
+              <div class="wayback-provenance-banner">
+                <div class="wayback-left">
+                  <span class="wayback-badge">WAYBACK ARCHIVE RECORD</span>
+                  <span id="snapshotDate">14 AUG 2003 · 23:04:15 UTC</span>
+                </div>
+                <div class="wayback-right">
+                  <span>🎃 3 snapshots indexed between 2001–2003</span>
+                  <button type="button" class="source-trigger wayback-link" data-source="nex_01">Evidence Mode ↗</button>
+                </div>
+              </div>
+
+              <!-- Simulated Loading Progress Bar -->
+              <div class="browser-progress-track">
+                <div class="browser-progress-bar" id="browserProgressBar"></div>
+              </div>
+
+              <!-- Rendered Preserved Page Content -->
+              <div class="virtual-browser-viewport" id="virtualBrowserContent">
+                <!-- Injected dynamically by app.js based on active world and page -->
+              </div>
+
+              <!-- Browser Status Bar -->
+              <div class="browser-status-bar">
+                <div class="status-left">
+                  <span class="status-icon"><img src="/logo.png" alt="" class="status-skull-icon" /></span>
+                  <span id="browserStatusMsg">Document: Done</span>
+                </div>
+                <div class="status-right">
+                  <span>🔒 128-bit SSL</span>
+                  <span>Zone: Spooky Internet (Restricted)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL 2: Feature 3 - Ask the Ghost (Grounded RAG) -->
+          <div class="panel panel-ghost" id="ghostPanel" data-panel-view hidden>
+            <div class="ghost-experience-box">
+              <div class="thread-head compact-head">
+                <div class="ghost-head-title">
+                  <img src="/logo.png" alt="Ghost" class="head-ghost-skull" />
+                  <div>
+                    <span class="thread-label">FEATURE 3: ASK THE GHOST · RETRIEVAL-AUGMENTED CONVERSATIONAL GUIDE</span>
+                    <h1>interrogate the forgotten archive.</h1>
+                    <p>AI answers are synthesized strictly from preserved passages. Speculation and unrecorded history are rejected.</p>
+                  </div>
+                </div>
+                <div class="ghost-mode-toggle" aria-label="Ghost persona response modes">
+                  <span class="mode-label">RESPONSE MODE:</span>
+                  <button type="button" class="btn-mode is-active" data-mode="historian">Historian (Factual & Cited)</button>
+                  <button type="button" class="btn-mode" data-mode="echo">Community Echo (Atmospheric)</button>
+                </div>
+              </div>
+
+              <div class="ghost-chat-window">
+                <div class="chat-feed" id="chatFeed" aria-live="polite">
+                  <!-- Starter Welcome Message from the Ghost -->
+                  <div class="chat-message ghost-message">
+                    <span class="chat-label">
+                      <img src="/logo.png" alt="Ghost" class="chat-skull-icon" /> THE GHOST / SYSTEM INITIALIZED
+                    </span>
+                    <p>I am a conversational lens into the surviving digital archives. Ask me about who was here, what discussions mattered, or why the community grew quiet. Every answer is grounded in verifiable passages with inspectable citations.</p>
+                    <div class="chat-citations">
+                      <span class="citation-label">Verified Clues:</span>
+                      <button type="button" class="citation-pill source-trigger" data-source="nex_01">↳ [ghost_user_97 · 14 Aug 2003]</button>
+                      <button type="button" class="citation-pill source-trigger" data-source="witch_01">↳ [star_gazer_linda · 12 Oct 2003]</button>
+                      <button type="button" class="citation-pill source-trigger" data-source="star_01">↳ [Kenshin_00 · 31 Dec 2003]</button>
+                    </div>
+                  </div>
+                </div>
+
+                <form class="chat-composer" id="chatForm">
+                  <label for="ghostQuestion">ASK A QUESTION ABOUT THIS COMMUNITY</label>
+                  <div class="composer-row">
+                    <input id="ghostQuestion" autocomplete="off" placeholder="e.g. Why did people leave? What was ghost_user_97's final post?" />
+                    <button type="submit">send ↗</button>
+                  </div>
+                  <div class="composer-help">
+                    <span><i class="led"></i> BM25 Lexical Retrieval Active · Client-Side Execution</span>
+                    <span>Honest epistemic uncertainty: The model admits silence when records end</span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL 3: Feature 4 - The Last Online & Digital Graveyard -->
+          <div class="panel panel-last" id="lastPanel" data-panel-view hidden>
+            <div class="fade-experience-box">
+              <div class="thread-head compact-head">
+                <div>
+                  <span class="thread-label">FEATURE 4: THE LAST ONLINE · ARCHIVE TIMELINE & SIGNAL FADE</span>
+                  <h1 id="lastOnlineWorldTitle">The Nexus 2003 · Activity Fade Map</h1>
+                  <p>Discovering the boundaries of what survived—and understanding what was lost.</p>
+                </div>
+              </div>
+
+              <div class="last-grid">
+                <div class="timeline-container">
+                  <h3>Monthly Preserved Post Density</h3>
+                  <div class="timeline" id="timelineRows">
+                    <!-- Populated dynamically by app.js -->
+                  </div>
+                  <div class="fade-callout">
+                    <span class="led"></span>
+                    <div>
+                      <strong>The Signal Fades Into Silence</strong>
+                      <small>Observation marks when web crawlers stopped capturing, not necessarily when humans stopped logging in.</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="traces-story-container">
+                  <div class="ethic-box">
+                    <span class="thread-label">ARCHIVE ETHIC & BOUNDARIES</span>
+                    <p>“We can measure the last post saved in copper wire and magnetic tape. We cannot see where people traveled once their screens went black.”</p>
+                    <div class="ethic-stamp">EVIDENCE<br />≠<br />OMNISCIENCE</div>
+                  </div>
+
+                  <div class="final-traces-summary">
+                    <h4>The Final Traces Story</h4>
+                    <p>The archive preserves small human moments: a high school student worried their parents will cancel the dial-up connection; a webmaster unable to afford server leases; a friend leaving a guestbook note that was never answered.</p>
+                    <div class="trace-points">
+                      <div><strong>Genesis Capture:</strong> <span id="genesisDate">JAN 2003</span></div>
+                      <div><strong>Last Recorded Post:</strong> <span id="lastRecordedDate">14 AUG 2003 (23:04)</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- HALLOWEEN SPECIAL: The Digital Graveyard of Tombstones -->
+              <section class="digital-graveyard-section" aria-label="Digital Graveyard Tombstones">
+                <div class="graveyard-header">
+                  <div class="graveyard-title">
+                    <span class="cross-icon">🪦</span>
+                    <h2>THE DIGITAL GRAVEYARD · FORGOTTEN TOMBSTONES OF THE EARLY WEB</h2>
+                    <span class="cross-icon">🪦</span>
+                  </div>
+                  <p>Rest in peace to the protocols, dial-up sounds, plug-ins, and online neighborhoods that built our digital childhoods. Click to pay respects.</p>
+                </div>
+
+                <div class="tombstones-grid">
+                  <!-- Tombstone 1: Dial-up 56k -->
+                  <div class="tombstone-card" data-tombstone="dialup">
+                    <div class="tombstone-arch">
+                      <div class="tombstone-epitaph-head">R.I.P.</div>
+                      <div class="tombstone-name">DIAL-UP 56K MODEM</div>
+                      <div class="tombstone-dates">1995 — 2003</div>
+                    </div>
+                    <div class="tombstone-body">
+                      <p class="epitaph-quote">“Silenced when mom picked up the telephone line. May the dual-tone handshake scream echo forever in copper wires.”</p>
+                    </div>
+                    <div class="tombstone-foot">
+                      <button type="button" class="btn-candle" data-tombstone="dialup">
+                        <span class="candle-icon">🕯️</span> <span class="candle-label">Light a Candle</span> (<span class="respect-count">128</span>)
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Tombstone 2: GeoCities -->
+                  <div class="tombstone-card" data-tombstone="geocities">
+                    <div class="tombstone-arch">
+                      <div class="tombstone-epitaph-head">HERE LIES</div>
+                      <div class="tombstone-name">GEOCITIES NEIGHBORHOODS</div>
+                      <div class="tombstone-dates">1994 — 2009</div>
+                    </div>
+                    <div class="tombstone-body">
+                      <p class="epitaph-quote">“Home to 38 million handcrafted personal homepages, blinking marquee texts, glitter dollz, and Under Construction GIFs.”</p>
+                    </div>
+                    <div class="tombstone-foot">
+                      <button type="button" class="btn-candle" data-tombstone="geocities">
+                        <span class="candle-icon">🕯️</span> <span class="candle-label">Light a Candle</span> (<span class="respect-count">342</span>)
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Tombstone 3: Netscape Navigator -->
+                  <div class="tombstone-card" data-tombstone="netscape">
+                    <div class="tombstone-arch">
+                      <div class="tombstone-epitaph-head">IN MEMORY OF</div>
+                      <div class="tombstone-name">NETSCAPE NAVIGATOR</div>
+                      <div class="tombstone-dates">1994 — 2008</div>
+                    </div>
+                    <div class="tombstone-body">
+                      <p class="epitaph-quote">“The browser that steered us across uncharted cyberspace at 14.4 kbps. Best viewed at 800×600.”</p>
+                    </div>
+                    <div class="tombstone-foot">
+                      <button type="button" class="btn-candle" data-tombstone="netscape">
+                        <span class="candle-icon">🕯️</span> <span class="candle-label">Light a Candle</span> (<span class="respect-count">210</span>)
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Tombstone 4: Macromedia Flash -->
+                  <div class="tombstone-card" data-tombstone="flash">
+                    <div class="tombstone-arch">
+                      <div class="tombstone-epitaph-head">R.I.P.</div>
+                      <div class="tombstone-name">MACROMEDIA FLASH</div>
+                      <div class="tombstone-dates">1996 — 2020</div>
+                    </div>
+                    <div class="tombstone-body">
+                      <p class="epitaph-quote">“Where stick figure animations, dress-up games, custom preloaders, and Newgrounds legends ran wild.”</p>
+                    </div>
+                    <div class="tombstone-foot">
+                      <button type="button" class="btn-candle" data-tombstone="flash">
+                        <span class="candle-icon">🕯️</span> <span class="candle-label">Light a Candle</span> (<span class="respect-count">519</span>)
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Tombstone 5: AOL Instant Messenger -->
+                  <div class="tombstone-card" data-tombstone="aim">
+                    <div class="tombstone-arch">
+                      <div class="tombstone-epitaph-head">HERE SLEEPS</div>
+                      <div class="tombstone-name">AIM (AOL MESSENGER)</div>
+                      <div class="tombstone-dates">1997 — 2017</div>
+                    </div>
+                    <div class="tombstone-body">
+                      <p class="epitaph-quote">“Away Message: 'brb dinner' · Door-slam sound effect · Never came back online.”</p>
+                    </div>
+                    <div class="tombstone-foot">
+                      <button type="button" class="btn-candle" data-tombstone="aim">
+                        <span class="candle-icon">🕯️</span> <span class="candle-label">Light a Candle</span> (<span class="respect-count">487</span>)
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Tombstone 6: The Guestbook -->
+                  <div class="tombstone-card" data-tombstone="guestbook">
+                    <div class="tombstone-arch">
+                      <div class="tombstone-epitaph-head">R.I.P.</div>
+                      <div class="tombstone-name">THE HOMEPAGE GUESTBOOK</div>
+                      <div class="tombstone-dates">1995 — 2005</div>
+                    </div>
+                    <div class="tombstone-body">
+                      <p class="epitaph-quote">“'Cool page! Please check out my site and sign my book!' A polite era when strangers left kindness in digital guest logs.”</p>
+                    </div>
+                    <div class="tombstone-foot">
+                      <button type="button" class="btn-candle" data-tombstone="guestbook">
+                        <span class="candle-icon">🕯️</span> <span class="candle-label">Light a Candle</span> (<span class="respect-count">196</span>)
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right Rail: Archivist Tools & Metadata Widgets -->
+        <aside class="right-rail" aria-label="Archive telemetry and quick actions">
+          <!-- Widget 1: Quick Ghost Prompt -->
+          <section class="side-widget ghost-widget">
+            <div class="widget-title">
+              <span>ASK THE GHOST</span>
+              <span class="tiny-live"><i></i> haunt mode</span>
+            </div>
+            <div class="ghost-mini-skull">
+              <img src="/logo.png" alt="Ghost Logo" class="widget-ghost-skull" />
+              <div class="spooky-aura"></div>
+            </div>
+            <p>“Why did this community go quiet?”</p>
+            <div class="widget-answer">
+              “The evidence shows gradual fade in posts, school resumptions, and server lease expirations.”
+            </div>
+            <button class="widget-button jump-ghost" type="button">Open Ghost Channel ↗</button>
+          </section>
+
+          <!-- Widget 2: Archive Telemetry -->
+          <section class="side-widget archive-widget">
+            <div class="widget-title">
+              <span>ARCHIVE STATUS</span>
+              <span>READ-ONLY</span>
+            </div>
+            <div class="telemetry-list">
+              <div><span>Surviving Sectors:</span> <strong>3 Worlds</strong></div>
+              <div><span>Retrieval Model:</span> <strong>BM25 + TF-IDF</strong></div>
+              <div><span>Inference:</span> <strong>Local / Grounded</strong></div>
+              <div><span>Halloween Mode:</span> <strong>🎃 Active</strong></div>
+            </div>
+            <button class="widget-link source-trigger" data-source="manifest" type="button">Inspect Architecture Map ↗</button>
+          </section>
+
+          <!-- Widget 3: Curated World Highlights -->
+          <section class="side-widget">
+            <div class="widget-title">
+              <span>SURVIVING ARTIFACTS</span>
+              <span>traces</span>
+            </div>
+            <ol class="latest-list">
+              <li>
+                <a href="#thread_0047" data-virtual-nav="nexus_gaming/thread_0047.html">ghost_user_97's final post</a>
+                <small>14 Aug 2003 · Thread #0047</small>
+              </li>
+              <li>
+                <a href="#guestbook" data-virtual-nav="pixel_witch_attic/guestbook.html">Linda's unanswered guestbook note</a>
+                <small>12 Oct 2003 · GeoCities Area51</small>
+              </li>
+              <li>
+                <a href="#farewell" data-virtual-nav="starlight_anime/farewell.html">Webmaster's final server broadcast</a>
+                <small>31 Dec 2003 · Anime Hub</small>
+              </li>
+            </ol>
+          </section>
+
+          <!-- Widget 4: Archivist Disclosure -->
+          <section class="side-widget disclosure-widget">
+            <div class="widget-title">
+              <span>ARCHIVIST ETHIC</span>
+              <span>WEEK 4</span>
+            </div>
+            <p>We do not resurrect real people. Ghost of the Internet provides clearly labeled, AI-generated interpretations strictly anchored to historical evidence.</p>
+            <button class="inline-source source-trigger" type="button" data-source="manifest">show provenance map</button>
+          </section>
+        </aside>
+      </main>
+
+      <!-- Site Footer -->
+      <footer class="site-footer">
+        <span>🎃 GHOST OF THE INTERNET © 2003–2026 · HACKTOBERFEST SUBMISSION</span>
+        <span>Built with grounded AI retrieval, retro browser chrome, and digital archaeology</span>
+        <span><a href="#top">back to top ↑</a></span>
+      </footer>
+    </div>
+
+    <!-- Feature 5: Evidence Mode & Side-by-Side Inspector Modal -->
+    <div class="modal-backdrop" id="sourceModal" hidden>
+      <section class="source-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-head">
+          <span id="modalTitle">
+            <img src="/logo.png" alt="" class="modal-skull-icon" /> FEATURE 5: EVIDENCE MODE — HISTORICAL PROVENANCE INSPECTOR
+          </span>
+          <button class="modal-close" type="button" aria-label="Close evidence inspector">×</button>
+        </div>
+        <div class="modal-content" id="modalContent">
+          <!-- Populated dynamically by openEvidenceModal(sourceId) -->
+        </div>
+        <div class="modal-foot">
+          <span><i class="led"></i> 100% Grounded Trace · Verifiable Against Archive</span>
+          <button type="button" class="modal-close secondary-close">Return to Browser</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
