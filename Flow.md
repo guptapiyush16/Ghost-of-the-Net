@@ -170,5 +170,37 @@ graph TD
     Assertions --> ExitCode["Exit Code 0 (All Tests Passed)"]
 ```
 
+---
+
+## 6. DEV.to / Hacktoberfest Submission Pipeline Flow
+
+```mermaid
+flowchart TD
+    subgraph Authoring["1. Submission Preparation"]
+        Doc["DEVPOST.md"]
+        YAML["YAML Frontmatter\ntitle, published, tags"]
+        Body["Markdown Sections\nWhat I Built, Demo, Code, How I Built It,\nWhy Open Innovation Matters, Agent Session,\nThe Spirit of It, Prize Categories"]
+        Doc --> YAML
+        Doc --> Body
+    end
+
+    subgraph Publishing["2. DEV.to Platform Intake"]
+        Editor["DEV.to Web Interface / API"]
+        YAML --> Editor
+        Body --> Editor
+        Editor --> ForemCompiler["Forem Markdown/Liquid Compiler"]
+        ForemCompiler --> GHWidget["Fetch GitHub Repo Widget\n(guptapiyush16/Ghost-of-the-Net)"]
+    end
+
+    subgraph Indexing["3. Contest Evaluation"]
+        Tags["#devchallenge\n#hf26challenge"]
+        SearchIndex["Algolia / PostgreSQL Tag Stream"]
+        ForemCompiler --> Tags
+        Tags --> SearchIndex
+        SearchIndex --> Judges["Judging Panel & Category Evaluation\n• Writing Quality\n• Relevance & Theme\n• Creativity\n• Technical Execution\n• Best Use of Render ($200)"]
+    end
+```
+
+
 
 

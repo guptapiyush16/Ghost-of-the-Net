@@ -197,6 +197,18 @@ Project: Ghost of the Internet (Hacktoberfest 2026 · Week 4)
   2. Formatted according to official Devpost / DEV.to judging rubrics: Inspiration, What it does, How we built it, Technical challenges & breakthroughs (Vercel backend entrypoint resolution, high-DPI scanline contrast, epistemic boundary enforcement), Accomplishments, Learnings, and Future Roadmap.
 - **Reason**: Provides a submission artifact ready for instant publishing with high presentation quality and technical depth.
 
+---
+
+### [2026-10-29] Decision 20: Alignment with Official DEV.to Hacktoberfest Template & Metadata Schema
+- **Context**: The user shared the official Hacktoberfest Week 4 submission template and editor interface from DEV.to (`title`, `published`, `tags: devchallenge, hf26challenge`, and exact section headers).
+- **Decision**:
+  1. Restructured `DEVPOST.md` to map 1:1 with the canonical DEV template:
+     - YAML frontmatter: `title: Ghost of the Internet: Bringing Forgotten Web Communities Back to Life 👻`, `published: true`, `tags: devchallenge, hf26challenge, opensource, ai`.
+     - Exact H2 section headers: `What I Built`, `Demo`, `Code`, `How I Built It`, `Why Does Open Innovation Matter?`, `My Agent Session`, `The Spirit of It`, and `Prize Categories`.
+  2. Embedded DEV-specific liquid tags (`{% github ... %}`) and highlighted the "Best Use of Render" category with Infrastructure-as-Code blueprint (`render.yaml`).
+- **Reason**: Ensures 100% compliance with automated contest scrapers, community tagging guidelines, and editorial judging rubrics for Hacktoberfest 2026.
+
+
 
 
 

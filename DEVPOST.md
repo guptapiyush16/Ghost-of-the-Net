@@ -1,160 +1,147 @@
-# Ghost of the Internet: Bringing Forgotten Web Communities Back to Life 👻
+---
+title: Ghost of the Internet: Bringing Forgotten Web Communities Back to Life 👻
+published: true
+tags: devchallenge, hf26challenge, opensource, ai
+---
 
-> **"The internet remembers. Most of us just forgot where to look."**
-> 
-> *A submission for the [Hacktoberfest Open-Source AI Challenge — Week 4: Ghost in the Machine](https://dev.to/challenges/hacktoberfest-week4-2026-10-26)*
+*This is a submission for the [Hacktoberfest Open-Source AI Challenge Week 4: Ghost in the Machine](https://dev.to/challenges/hacktoberfest-week4-2026-10-26)*
+
+## What I Built
+
+**Ghost of the Internet** is an interactive time capsule designed to bring the forgotten web back to life.
+
+The early internet was full of personal websites, gaming forums, fan pages, guestbooks, and small neighborhoods built by people who simply wanted to share something with the world. Over the past two decades, many of these places disappeared completely, while others survive only in fragmented crawls preserved by web archives.
+
+I wanted to explore a central question: **What if we could do more than just view those archived fragments? What if we could talk to the history they preserve?**
+
+For this week's theme, *Ghost in the Machine*, I chose to interpret the "ghost" not as a spooky fictional monster, but as the real digital ghosts of the early web: the forgotten voices, forum discussions, and abandoned websites left behind in copper wires and magnetic tapes twenty-three years ago.
+
+**Ghost of the Internet** combines a nostalgic early-2000s retro browser shell with an in-browser, Retrieval-Augmented Generation (RAG) conversational guide:
+
+1. **Explore the Forgotten Web:** Browse three curated historical worlds through an authentic Windows 98/2000 browser chrome:
+   - **The Nexus 2003:** A gaming and dial-up tuning forum discussing Diablo II Baal runs, 900ms lag, and the quiet fade of August 2003.
+   - **Pixel Witch's Cyber Attic:** An authentic GeoCities Area51 personal homepage featuring animated visitor counters, glitter dollz, fallen hero shrines, and an untouched guestbook.
+   - **Starlight Anime Webring (2003):** An early anime fandom hub with *Serial Experiments Lain* and *Cowboy Bebop* reviews, concluding with the webmaster's farewell server lease broadcast.
+2. **Talk to the Ghost:** Interrogate the archive using an in-browser conversational intelligence powered by a mathematical BM25 ranking algorithm ($k_1=1.5, b=0.75$). The Ghost features two response modes:
+   - **🏛️ Historian Mode:** Delivers objective, analytical answers strictly citing verbatim quotes, original user handles, and crawl timestamps.
+   - **📻 Community Echo Mode:** Captures the atmospheric vernacular and subcultural rhythm of early-2000s forum life.
+   - **🛡️ Epistemic Boundary Guardrail:** If asked about events outside the archive (e.g. modern cryptocurrencies or post-2003 history), the Ghost explicitly refuses to hallucinate: *"The surviving archive ends in late 2003 and contains no verifiable mention of this topic. Because this is a grounded historical time capsule, I will not fabricate answers outside surviving evidence."*
+3. **Follow the Last Traces & Activity Fade:** Explore dynamically generated monthly post density bar charts across 2001–2003, tracking the exact timeline of when conversations peaked and when crawler sweeps recorded the final post.
+4. **Inspect Provenance in Evidence Mode:** Click any citation pill (`↳ [ghost_user_97 · 14 Aug 2003]`) to open an evidence modal showing verbatim raw quotations, confidence scores, and deep-links to jump directly to that page in the retro browser.
+5. **Halloween Special — The Digital Graveyard:** In the spirit of Halloween and Día de los Muertos, wander through an interactive graveyard of 3D stone tombstones honoring the departed technologies of our digital childhoods (*Dial-up 56k Modem*, *GeoCities*, *Netscape Navigator*, *Macromedia Flash*, *AIM*, and *The Homepage Guestbook*). Users can click to light memorial candles, accompanied by procedurally synthesized Web Audio bell chimes.
+
+The ghost isn't a resurrected person. It's an AI-generated voice grounded strictly in surviving digital traces. That distinction matters: **Evidence ≠ Omniscience**.
 
 ---
 
-### 🌐 Quick Links & Live Demos
+## Demo
 
-- **🚀 Live Production Website:** [https://ghostofthenet.vercel.app/](https://ghostofthenet.vercel.app/)
-- **💻 GitHub Repository:** [https://github.com/guptapiyush16/Ghost-of-the-Net.git](https://github.com/guptapiyush16/Ghost-of-the-Net.git)
-- **🧪 Test Suite:** `npm test` (Automated 45-Point Deterministic Verification Suite)
-- **☁️ Cloud Deployments:** Vercel Global Anycast Edge CDN & Render Blueprint Compatible
+- **🚀 Live Deployed Website:** [https://ghostofthenet.vercel.app/](https://ghostofthenet.vercel.app/)
+- **⚡ Local Server:** `http://localhost:3000/` (via `npm start`)
 
----
-
-## 💡 Inspiration & The Spirit of It
-
-Imagine stumbling upon an abandoned web forum where teenagers and gamers passionately discussed their favorite titles over 56k dial-up modems twenty-three years ago. 
-
-You read an archived post from a user asking: *"Is anyone still here? My parents say they're cancelling the internet next month lol..."* You scroll through surviving threads, guestbooks, and webrings. Then you ask the digital ghost:
-
-> **"What happened to everyone here?"**
-
-Traditional generative AI models would eagerly hallucinate a fictional story about where those people went to college or how the forum closed down. But a true archivist knows: **Evidence ≠ Omniscience**. The archive can prove that forum posts grew less frequent, that server lease warnings were posted, or that the last crawl succeeded on August 14, 2003. But it cannot know what happened once their CRT monitors went black.
-
-**Ghost of the Internet** was created to honor this delicate boundary. We wanted to build a nostalgic, immersive early-2000s time machine that lets you explore real digital ruins, converse with AI-guided ghosts strictly grounded in surviving web evidence, and reflect on the fragile nature of our collective digital memory.
+### Walkthrough Experience
+1. Open the live site and step inside **The Nexus 2003** in the retro browser.
+2. Click **Thread #0047** to read user `ghost_user_97`'s final message from August 14, 2003. Notice the simulated dial-up progress bar and synchronized Wayback timestamp ribbon.
+3. Switch to the **02 Ask the Ghost** tab. Submit the query: *"Why did everyone leave?"*
+4. Read the synthesized response and click the citation pill `↳ [ghost_user_97 · 14 Aug 2003]` to open **Evidence Mode**, inspecting the exact verified passage and metadata.
+5. Switch to **03 Digital Graveyard & Fade**. Inspect the monthly post decay chart, scroll to the tombstones, and click **"Light a Candle"** on the **DIAL-UP 56K MODEM** or **GEOCITIES** tombstone to hear the memorial chime and increment the respect tally.
+6. Toggle the **🎃 Spooky: ON** switch in the top system bar and click the floating ghost and pumpkin companions for retro sound easter eggs.
 
 ---
 
-## 🚀 What It Does
+## Code
 
-Ghost of the Internet combines a skeuomorphic early-2000s browser shell with in-browser Retrieval-Augmented Generation (RAG) and automated web archive archaeology:
+{% github https://github.com/guptapiyush16/Ghost-of-the-Net %}
 
-### 1. 🌐 Lost Worlds Portal (Curated Historical Sectors)
-Step inside three distinct, handcrafted early-web cultural ruins:
-- **The Nexus 2003:** A gaming and dial-up tuning community grappling with Diablo II Baal runs, 900ms latency, and the quiet fade of August 2003.
-- **Pixel Witch's Cyber Attic:** An authentic GeoCities Area51 personal homepage complete with animated visitor counters, glitter dollz, fallen hero shrines, and an untouched guestbook.
-- **Starlight Anime Webring (2003):** An early anime fandom hub featuring Serial Experiments Lain and Cowboy Bebop reviews, concluding with the webmaster's final farewell server broadcast.
-
-### 2. 🖥️ Authentic Retro Browser Shell & State Machine
-- **Windows 98/2000 Chrome:** Beveled titlebars, inset system frames, and retro icons.
-- **True History State Machine:** Fully functional `Back`, `Forward`, `Reload`, and `Home` navigation with dynamic button enabling/disabling based on history stack boundaries.
-- **Simulated Broadband & Dial-Up Latency:** Realistic transfer progress bar (`Connecting to host...`, `Receiving 34.2 KB...`, `Document: Done`).
-- **Provenance Badges:** Real-time synchronization of virtual URLs and Wayback capture timestamps (e.g., `14 AUG 2003 · 23:04:15 UTC`).
-
-### 3. 👻 Grounded AI Ghost (Dual Persona RAG Pipeline)
-Interact with an in-browser conversational intelligence powered by a mathematical BM25 ranking engine ($k_1=1.5, b=0.75$):
-- **🏛️ Historian Mode:** Objective, analytical breakdowns strictly citing verbatim quotes, original authors, and exact crawl timestamps.
-- **📻 Community Echo Mode:** Atmospheric, nostalgic persona that speaks in the vernacular of early-2000s forum culture.
-- **🛡️ Epistemic Uncertainty Guardrail:** When asked about events beyond the archive (e.g., modern cryptocurrencies, post-2003 history), the AI refuses to fabricate answers: *"The surviving archive for The Nexus ends in late 2003 and contains no verifiable mention of this topic. Because this is a grounded historical time capsule, I will not fabricate answers outside the surviving evidence."*
-
-### 4. 📉 The Last Online & Activity Fade Map
-- **Monthly Post Density Visualization:** Dynamically generated activity bar charts displaying the rise, peak, and eventual decay of the community across months and years.
-- **Archivist Ethics Telemetry:** Displays the Genesis crawl date, last recorded post date, and reflection essays on digital impermanence.
-
-### 5. 📜 Evidence Mode & Provenance Inspector
-- **Provenance Drawer Modal:** Click any citation pill (`↳ [ghost_user_97 · 14 Aug 2003]`) to inspect the verified raw passage, extraction confidence score (0.98), and matched keywords.
-- **Deep-Link Navigation:** "Open Page in Retro Browser" directly navigates the virtual browser to the original document where the evidence was discovered.
-
-### 6. 🎃 Halloween Special: The Digital Graveyard
-- **3D Stone Tombstones:** Interactive monuments honoring the forgotten relics of early cyberspace: *Dial-up 56k Modem*, *GeoCities Neighborhoods*, *Netscape Navigator*, *Macromedia Flash*, *AIM (AOL Instant Messenger)*, and *The Homepage Guestbook*.
-- **Interactive Memorial Candles:** Click to pay respects, illuminating candles with Web Audio bell chimes and incrementing live respect tallies.
-- **Procedural Web Audio Synthesizer:** Zero external audio files—uses the Web Audio API to synthesize retro UI clicks, 56k dial-up chirps, spooky theremin warbles, and warm memorial bell frequencies.
-- **Halloween Theme Toggle:** Floating animated companion spooks (ghost & pumpkin) with interactive click sound easter eggs.
+- **GitHub Repository:** [https://github.com/guptapiyush16/Ghost-of-the-Net.git](https://github.com/guptapiyush16/Ghost-of-the-Net.git)
+- **Automated Test Suite:** Run `npm test` to execute the built-in 45-point end-to-end verification suite (`test-e2e.js`).
+- **License:** Open Source (MIT License)
 
 ---
 
-## 🛠️ How We Built It
+## How I Built It
 
-Ghost of the Internet was engineered with a **zero-external-API-key, privacy-first, client-side RAG architecture**:
+The main challenge was making an AI conversation feel authentic and evocative without allowing the model to invent history.
 
-```mermaid
-flowchart TD
-    subgraph Data Archaeology Pipeline
-        CDX[Wayback Machine CDX API] -->|collapse=timestamp:6| Snapshots[Monthly Captures 2001-2003]
-        Snapshots -->|id_ Raw Modifier| RawHTML[Raw Unmodified HTML]
-        RawHTML --> Parser[Archaeology Parser & Layout Unwrapper]
-        Parser --> PII[PII Redactor: Email & Phone Sanitizer]
-        PII --> Store[(Structured Archive Store & Passages)]
-    end
-
-    subgraph Client-Side RAG Runtime
-        Store --> InvertedIndex[BM25 Inverted Index Engine]
-        UserQuery[User Question] --> InvertedIndex
-        InvertedIndex --> Scorer{Top Score >= 0.6?}
-        Scorer -->|Yes| Grounding[Extract Top Passages & Citations]
-        Scorer -->|No| Fallback[Epistemic Boundary Rejection]
-        Grounding --> Persona{Active Persona}
-        Persona -->|Historian| FactualResponse[Verbatim Analysis + Citation Pills]
-        Persona -->|Community Echo| NostalgicResponse[Atmospheric Subculture Summary]
-        Fallback --> FactualResponse
-    end
-
-    subgraph User Experience Shell
-        FactualResponse --> ChatUI[Ask the Ghost Chat Feed]
-        NostalgicResponse --> ChatUI
-        ChatUI --> Modal[Evidence Mode Provenance Inspector]
-        Modal --> BrowserShell[Retro Windows 98/2000 Browser]
-        BrowserShell --> Graveyard[3D Digital Graveyard & Candles]
-    end
+### The Architecture
+```
+Ghostofthenet/
+├── index.html          # Semantic HTML5 retro browser shell & experience views
+├── styles.css          # Early-2000s desktop chrome, scanlines, and GeoCities styling
+├── ghost-client.js     # Virtual browser state machine, BM25 retrieval, Web Audio synth
+├── archiveData.js      # Curated historical corpus (3 worlds, 8 pages, 10 passages)
+├── ingest.js           # Production Wayback Machine CDX API ingestion pipeline
+├── local-server.js     # Lightweight local/Render Node server with /api/ingest
+├── build.js            # Automated build script bundling static assets into dist/
+├── test-e2e.js         # Automated 45-point deterministic verification harness
+├── render.yaml         # Render Blueprint Infrastructure-as-Code specification
+└── vercel.json         # Vercel Global Edge CDN deployment configuration
 ```
 
-### Core Technologies
-- **Frontend Core:** Semantic HTML5, CSS3 Custom Properties (Design Tokens), and Vanilla Modern ECMAScript Modules (ESM).
-- **Search & Retrieval:** Custom in-browser BM25 ranking algorithm with term frequency saturation ($k_1=1.5$), document length normalization ($b=0.75$), inverse document frequency (IDF), and domain-specific stopword filtering.
-- **Audio Synthesis:** Web Audio API with procedural `OscillatorNode` and `GainNode` shaping (zero external MP3/WAV assets).
-- **Production Archive Pipeline (`ingest.js`):** Node.js pipeline querying the Internet Archive Wayback Machine CDX API (`web.archive.org/cdx/search/cdx`), downloading raw HTML with the `id_` modifier to strip Wayback banners, unwrapping legacy layout tables, and redacting personal data.
-- **Automated Verification (`test-e2e.js`):** Custom 45-point deterministic test suite validating corpus integrity, BM25 retrieval mathematics, PII redaction, state machines, and live Vercel Anycast edge endpoints.
-- **Cloud Edge Infrastructure:** Deployed as a pure static edge site on Vercel Global CDN (`vercel.json`) with sub-10ms response times, and fully compatible with Render container Blueprints (`render.yaml`).
+### 1. Zero-API-Key In-Browser BM25 Retrieval Engine
+Instead of relying on remote, closed-source vector database APIs, the search and retrieval pipeline is written in pure ECMAScript and runs 100% in the user's browser. It tokenizes queries, applies stopword filtering, normalizes document lengths, and calculates inverse document frequency (IDF) using standard BM25 ranking parameters ($k_1=1.5, b=0.75$). This gives sub-millisecond retrieval speeds with deterministic repeatability and zero marginal cost.
+
+### 2. Epistemic Uncertainty & Dual Personas
+The grounding engine passes the top $K$ passages into a dual-mode synthesis layer. If the highest passage relevance score falls below the confidence threshold ($<0.6$), the engine halts and outputs an explicit statement acknowledging the boundaries of the crawl. When evidence is found, it formats either a rigorous factual citation (Historian Mode) or an evocative subculture reflection (Community Echo Mode).
+
+### 3. Production Archive Ingestion Pipeline (`ingest.js`)
+To source real historical web data, I built a command-line pipeline that:
+- Queries the Internet Archive’s Capture Index (CDX) API (`web.archive.org/cdx/search/cdx`) with timestamp collapsing (`collapse=timestamp:6`) to capture monthly historical snapshots.
+- Retrieves raw payloads using the `id_` modifier (`web.archive.org/web/{timestamp}id_/{url}`) to bypass Wayback banners and rewrite scripts.
+- Unwraps archaic nested `<table>` layouts and sanitizes `<script>` and `<style>` blocks.
+- Applies regex PII redaction to mask historical emails (`[email-redacted]`) and phone numbers (`[phone-redacted]`) for archival ethics.
+
+### 4. Procedural Web Audio API Synthesizer
+Zero audio files (MP3s/WAVs) are downloaded. All sound effects—including mouse clicks, 56k dial-up modem handshakes, theremin warbles, and memorial bell chimes—are synthesized mathematically using Web Audio `OscillatorNode` and `GainNode` frequency envelopes.
+
+### 5. Multi-Cloud Edge Deployment
+The application is configured to build cleanly into `dist/` and deploy as an immutable, sub-10ms static site across Vercel’s Global Anycast Edge CDN (`vercel.json`), while also supporting containerized PaaS environments on Render via an Infrastructure-as-Code Blueprint (`render.yaml`).
 
 ---
 
-## 🧗 Challenges We Ran Into & How We Overcame Them
+## Why Does Open Innovation Matter?
 
-### 1. The `@vercel/backends` Auto-Detection Collision (`500 FUNCTION_INVOCATION_FAILED`)
-When first deploying to Vercel, visiting the root URL crashed with a mysterious cloud-level `500 FUNCTION_INVOCATION_FAILED`. 
-- **The Investigation:** Build logs revealed the smoking gun: `✓ Build complete — Using dist/app.js as the root entrypoint`. Vercel's zero-config backend detection engine (`@vercel/backends`) scans output folders for standard Node server names (`app.js`, `server.js`, `index.js`). It assumed our client-side script was an Express backend server and synthesized a serverless wrapper around it. When Node executed `app.js`, browser APIs (`window`, `document`) threw immediate reference errors.
-- **The Fix:** We renamed `app.js` to `ghost-client.js` and set `"framework": null` in `vercel.json`. This completely neutralized backend detection heuristics, converting the project into an immutable, lightning-fast static edge deployment.
+Digital history is inherently fragile. Websites disappear, hosting services shut down, and online communities lose the context that once made them meaningful. 
 
-### 2. Balancing Retro Skeuomorphism with Modern Accessibility (CRT Scanlines)
-Early iterations included a repeating CSS gradient CRT scanline shader to mimic cathode-ray tube monitors. However, testing on high-DPI Retina/4K displays revealed that alternating 3px horizontal raster stripes bisected 11px body text, degrading character legibility below WCAG 2.1 contrast standards.
-- **The Solution:** We removed the scanline raster overlay while doubling down on authentic structural skeuomorphism—beveled titlebars, inset address bars, nostalgic serif headings, and authentic early-2000s palettes—achieving retro charm with crystal-clear legibility.
+Open innovation matters for this project for three fundamental reasons:
 
-### 3. Enforcing Epistemic Boundaries in AI RAG Systems
-Standard generative AI architectures suffer from a compulsion to answer every prompt, often fabricating plausible-sounding digital history when archives are silent.
-- **The Solution:** We instituted an explicit mathematical threshold in the BM25 retrieval stage: if the top scoring passage falls below $0.6$, the system halts inference and triggers an honest refusal, educating the visitor on the temporal limits of the surviving web crawl.
+1. **Preservation Belongs to Everyone, Not Cloud Providers:** If tools for exploring digital history require paid subscriptions, proprietary vector databases, or closed API tokens, our ability to interact with our own cultural memory becomes paywalled and vulnerable to platform shutdown. By building an open-source, client-side RAG engine, the entire application can run on an offline laptop with the internet turned off.
+2. **Eliminating the Compulsion to Hallucinate:** Closed commercial LLMs are trained to always produce a confident answer, even when they lack knowledge. In historical exploration, this is catastrophic—it fabricates quotes and invents fake historical figures. Open innovation allowed us to inspect every step of the retrieval pipeline, enforce strict mathematical score floors, and program the Ghost to honestly admit: *"The archive is silent here."*
+3. **Inspectable Provenance & Privacy:** Public web archives contain raw historical traces from real people. An open-source pipeline allows anyone to audit the PII redaction rules, verify extraction ethics, and adapt the codebase to preserve their own family histories, local BBS communities, or school forums.
+
+The goal isn't to manufacture a convincing past. It's to make the past we still have easier to explore.
 
 ---
 
-## 🏆 Accomplishments That We're Proud Of
+## My Agent Session
 
-1. **Zero External API Keys Required:** Unlike traditional RAG applications that depend on paid vector databases or external proprietary LLM endpoints, the entire exploration, retrieval, and grounding engine runs **100% locally and offline-first in the user's browser**.
-2. **Strict Citation Provenance:** Every statement generated by the Ghost links directly to an inspectable, surviving archive snippet with date and author provenance.
-3. **Pure Skeuomorphic Audio:** Dial-up sounds, clicks, and memorial bell chimes are synthesized on the fly using mathematical audio frequencies.
-4. **Automated 45-Point Test Harness:** Rigorous deterministic verification covering every corpus file, BM25 score calculation, PII redaction rule, and live cloud endpoint (`npm test`).
-5. **Authentic Halloween Atmosphere:** A respectful digital graveyard where users can reflect on the software, protocols, and digital communities that shaped our lives.
+This project was built through a collaborative, agentic pair-programming workflow:
 
----
-
-## 📚 What We Learned
-
-- **Digital Archaeology is Fragile:** Public web archives don't capture complete websites; they capture isolated moments in time. Designing interfaces around *missing* information requires just as much thought as designing around surviving information.
-- **Edge Deployment Heuristics Matter:** Understanding cloud platform convention-over-configuration rules (like Vercel's backend entrypoint scanner) is essential when building high-performance client-side web apps.
-- **The Value of Open-Source History:** Building open-source tools to interact with web archives ensures that access to digital history remains open, inspectable, and accessible to everyone, free from proprietary platform lock-in.
+- **Automated Verification Harness:** We created a deterministic 45-point test suite ([`test-e2e.js`](file:///c:/PeassBeReasonable/Hacktoberfest/Ghostofthenet/test-e2e.js)) that tests corpus integrity, BM25 scoring math, PII masking, and live edge network responses. Running `npm test` validates all 45 assertions with zero failures.
+- **Debugging Cloud Heuristics:** When deploying to Vercel, we diagnosed a subtle platform collision where Vercel's zero-config backend engine (`@vercel/backends`) auto-detected `dist/app.js` as an Express server and wrapped it in a crashing serverless function (`500 FUNCTION_INVOCATION_FAILED`). By renaming the file to `ghost-client.js` and configuring `"framework": null`, we forced Vercel to treat the app as a pure static edge deployment, achieving 100% uptime.
+- **Architecture & Decision Logs:** Every meaningful technical tradeoff was recorded in [`Decisions.mc`](file:///c:/PeassBeReasonable/Hacktoberfest/Ghostofthenet/Decisions.mc) (19 decisions logged), execution flows were mapped in [`Flow.md`](file:///c:/PeassBeReasonable/Hacktoberfest/Ghostofthenet/Flow.md), and interview-style technical deep dives were recorded in [`tech.md`](file:///c:/PeassBeReasonable/Hacktoberfest/Ghostofthenet/tech.md).
 
 ---
 
-## 🔮 What's Next for Ghost of the Internet
+## The Spirit of It
 
-- **Live Ingestion Web UI:** Allowing users to paste any historical URL or GeoCities address and watch the application automatically ingest, sanitize, and instantiate a new explorable world on the fly.
-- **WebLLM / Local SLM Integration:** Integrating WebLLM (e.g., Llama 3 8B or Phi-3 running via WebGPU directly in the browser) for conversational generation while retaining strict BM25 grounding.
-- **Webring Crawler Discovery:** Expanding automated extraction across connected links in historical webrings to reconstruct entire networks of forgotten 2000s fan communities.
+Imagine finding a message board where people discussed their favorite games twenty-three years ago.
+
+You read a post from someone named `ghost_user_97` on August 14, 2003:
+
+> *"anyone still here? my parents say they're cancelling the internet next month lol. i keep getting this weird dial-up noise even when nobody is online. probably nothing. anyway, did anyone else hear it?"*
+
+You scroll through the replies: `dialup_dan` talking about starting high school, another user saying they can only check the board once a week from the public library. Then the posts stop.
+
+When you ask the Ghost: *"What happened to everyone here?"*
+
+The Ghost doesn't pretend to know what college they attended or what careers they chose. It simply shows you the evidence: the sudden drop in posts in late August 2003, the dial-up disconnection notices, and the silence that followed.
+
+That uncertainty is the heart of the experience. The early internet was made of real people, late nights, and glowing CRT monitors. **Ghost of the Internet** helps us listen to the traces they left behind—without pretending those traces tell the whole story.
 
 ---
 
-## 🏷️ Built With
+## Prize Categories
 
-`javascript` `html5` `css3` `bm25` `retrieval-augmented-generation` `web-audio-api` `wayback-machine` `cdx-api` `vercel` `render` `hacktoberfest2026`
+### Featured Categories
+- **Best Use of Render:** The project includes a production-ready `render.yaml` Infrastructure-as-Code blueprint defining a Node web service with automated builds (`node build.js`), start command (`node local-server.js`), health check probes at `/api/health`, and 1-click deployment instructions in `README.md`.
