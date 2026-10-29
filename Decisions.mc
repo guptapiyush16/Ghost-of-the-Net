@@ -102,3 +102,16 @@ Project: Ghost of the Internet (Hacktoberfest 2026 · Week 4)
   3. Added repository metadata, description, and `engines` requirements to `package.json`.
   4. Added a 1-click "Deploy to Render" button and step-by-step instructions in `README.md`.
 - **Reason**: Enables seamless zero-config cloud deployment on Render with automatic HTTPS and continuous deployment directly from the user's GitHub repository.
+
+---
+
+### [2026-10-29] Decision 12: Vercel Deployment Architecture & Serverless Function Decoupling
+- **Context**: The user requested making the application compatible to deploy on Vercel.
+- **Decision**:
+  1. Created `vercel.json` defining `buildCommand: "node build.js"` and `outputDirectory: "dist"`.
+  2. Implemented native Vercel serverless functions in `api/`:
+     - `api/health.js`: Serverless health monitor endpoint.
+     - `api/ingest.js`: Serverless handler for live Wayback Machine CDX API ingestion.
+  3. Maintained backward compatibility with `server.js` (for Render/local Node) while enabling global edge static CDN delivery and serverless API execution on Vercel.
+  4. Added 1-click "Deploy with Vercel" button and setup documentation in `README.md`.
+- **Reason**: Allows instant, zero-configuration deployment to Vercel's global edge network with automatic SSL, preview URLs for pull requests, and sub-second cold starts.

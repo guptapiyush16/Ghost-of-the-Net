@@ -128,23 +128,29 @@ Creates a bundled production package in the `dist/` folder.
 
 ---
 
-## 5. 🚀 Deploy to Render (Cloud Hosting)
+## 5. 🚀 Cloud Deployment (Vercel & Render)
 
-This repository includes a [`render.yaml`](render.yaml) blueprint specification for 1-click deployment on [Render](https://render.com/).
+### Option A: Deploy to Vercel (Recommended)
+This repository is pre-configured with [`vercel.json`](vercel.json) and native serverless handlers in [`api/`](api/):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/guptapiyush16/Ghost-of-the-Net)
+
+**Quick Steps on Vercel Dashboard:**
+1. Go to [vercel.com/new](https://vercel.com/new) and import `guptapiyush16/Ghost-of-the-Net`.
+2. Vercel automatically reads `vercel.json` (Build Command: `node build.js`, Output: `dist`).
+3. Click **Deploy**! Your site is live on Vercel Edge Network in ~30 seconds with automatic SSL.
+
+---
+
+### Option B: Deploy to Render (Web Service)
+This repository also includes a [`render.yaml`](render.yaml) blueprint specification for [Render](https://render.com/):
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/guptapiyush16/Ghost-of-the-Net)
 
-### Manual Setup on Render Dashboard:
-1. Sign in to [Render Dashboard](https://dashboard.render.com/).
-2. Click **New +** → **Web Service**.
-3. Select **Build and deploy from a Git repository** and connect `https://github.com/guptapiyush16/Ghost-of-the-Net`.
-4. Configure the settings:
-   - **Name**: `ghost-of-the-net`
-   - **Runtime**: `Node`
-   - **Build Command**: `node build.js`
-   - **Start Command**: `node server.js`
-   - **Instance Type**: `Free`
-5. Click **Create Web Service**! Render will deploy your retro time capsule with free automatic HTTPS.
+**Steps on Render Dashboard:**
+1. Sign in to [Render Dashboard](https://dashboard.render.com/) → **New +** → **Blueprint**.
+2. Connect `https://github.com/guptapiyush16/Ghost-of-the-Net`.
+3. Click **Apply**! Render deploys the Node web service on the free tier.
 
 ---
 
