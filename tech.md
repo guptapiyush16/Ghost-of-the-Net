@@ -178,6 +178,22 @@ Directly querying Wayback URLs on-demand without querying the CDX index first br
 3. **Data Lifecycle Separation**:
    - Ingest heavy lifting is performed *ahead-of-time* (AOT) via `ingest.js` (scraping Wayback CDX, sanitizing nested tables, and redacting PII). The resulting normalized JSON/JS AST is frozen into the code repository. This provides full git versioning, immutable provenance, and guarantees that historical evidence cannot be arbitrarily altered or corrupted at runtime.
 
+---
+
+### Question 16: What distinguishes a Dynamic Client-Side Single Page Application (CSR) from a purely Static Website, and how does this project leverage dynamic runtime execution without a database?
+**Question:** While the deployment on Vercel is classified as a "static site" because it serves static assets (HTML/CSS/JS) without a Node.js serverless backend, why is the user experience classified as completely *dynamic*? How does runtime state management, DOM synthesis, and in-browser BM25 vector scoring operate without server-side rendering?
+
+**Answer:**
+1. **Empty Shell vs. Dynamic DOM Synthesis**:
+   - In a purely static website, all pages, threads, and text are pre-rendered into fixed `.html` files on the server or disk.
+   - In *Ghost of the Internet*, the HTML shell (`index.html`) contains only an empty container: `<div class="virtual-browser-viewport" id="virtualBrowserContent"></div>`.
+   - At runtime, the client execution engine (`ghost-client.js`) reads state (`currentWorldId`, `currentPageId`), dynamically evaluates data collections, and executes template literals to construct and inject HTML nodes into the DOM.
+2. **Stateful Navigation & Event Loop**:
+   - The retro browser includes a virtual navigation state machine (`historyStack`, `historyIndex`). Clicking links does not trigger browser document reloads; instead, JavaScript intercepts events, updates simulated progress bars (`simulatePageTransfer`), updates browser chrome, and pushes history states dynamically.
+3. **Real-Time BM25 Retrieval & Inference**:
+   - The conversational "Ask the Ghost" interface does not display pre-baked text files. When a user submits any natural language string, the engine performs on-the-fly tokenization, stopword elimination, IDF calculation, BM25 scoring across passages, and confidence thresholding ($<0.6$ rejection). The answer is assembled dynamically in memory.
+
+
 
 
 

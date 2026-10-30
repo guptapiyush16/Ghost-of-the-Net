@@ -219,6 +219,18 @@ Project: Ghost of the Internet (Hacktoberfest 2026 · Week 4)
      - **Stage 3 (Reactive Virtual Browser DOM Rendering)**: How `ghost-client.js` executes `navigateTo()`, updates browser chrome, and executes parameterized template generators (`renderNexusPage()`) to bind data into the DOM without external database queries.
 - **Reason**: Provides total provenance transparency for judges, developers, and users, demonstrating why client-side in-memory architecture delivers sub-millisecond navigation without API rate limits or privacy leaks.
 
+---
+
+### [2026-10-30] Decision 22: Dynamic Client-Side SPA Rendering Architecture vs Static Assets
+- **Context**: The user inquired whether the forum content, threads, and values shown on the website are dynamic or static.
+- **Decision**:
+  1. Documented the precise architectural boundary:
+     - **Dynamic Rendering**: The DOM structure in the retro viewport (`#virtualBrowserContent`), the address bar, history stack, dial-up progress animations, and real-time BM25 AI grounding are **100% dynamic**. `index.html` has zero hardcoded thread rows; all elements are generated dynamically at runtime via JavaScript template functions.
+     - **Static / In-Memory Dataset**: The underlying historical records in `archiveData.js` are curated and frozen in an in-memory document store rather than querying a remote SQL server on each click.
+  2. Clarified that live dynamic scraping is available via `ingest.js` for on-demand Wayback CDX fetches.
+- **Reason**: Clarifies technical nuances between static asset hosting (Vercel CDN) and dynamic single-page client-side runtime execution (DOM synthesis & BM25 ranking).
+
+
 
 
 
