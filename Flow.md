@@ -201,6 +201,56 @@ flowchart TD
     end
 ```
 
+---
+
+## 7. Data Provenance & DOM Rendering Pipeline Flow
+
+```mermaid
+flowchart TD
+    subgraph Sourcing["1. Historical Ingestion (ingest.js)"]
+        IA["Internet Archive CDX API\nweb.archive.org/cdx/search/cdx"]
+        Raw["Raw Unwrapped HTML\nweb.archive.org/web/{ts}id_/{url}"]
+        Sanitize["Archaeology Parser & PII Masking\n(regex email/phone redaction)"]
+        IA --> Raw --> Sanitize
+    end
+
+    subgraph DataStore["2. In-Memory Corpus (archiveData.js)"]
+        Worlds["archiveWorlds Object Array"]
+        World["World: The Nexus 2003\n• captureDate: '14 AUG 2003 · 23:04:15 UTC'\n• totalPosts: 1284\n• stats & timeline decay buckets"]
+        Pages["pages Array: index, thread_0047\n• sections: General Gaming, Hardware & Dial-Up\n• threads: titles, authors, replies, views, lastPost"]
+        Passages["Indexed RAG Passages (10 snippets)\n• text, keywords, author, timestamp"]
+        Sanitize -.-> Worlds
+        Worlds --> World
+        World --> Pages
+        World --> Passages
+    end
+
+    subgraph ClientState["3. State Machine & Routing (ghost-client.js)"]
+        State["state = {\n  currentWorldId: 'nexus_gaming',\n  currentPageId: 'index',\n  historyStack: [...]\n}"]
+        NavFn["navigateTo(worldId, pageId)"]
+        ChromeFn["updateBrowserChrome(world, page)"]
+        RenderFn["renderActivePage(world, page)\n-> renderNexusPage(world, page)"]
+        State --> NavFn
+        NavFn --> ChromeFn
+        NavFn --> RenderFn
+    end
+
+    subgraph DOM["4. Dynamic UI Elements on Screen"]
+        Title["#browserTitleDisplay: 'The Nexus :: Main Board Index — [Retro Navigator 4.0]'"]
+        URL["#virtualUrlBar: 'http://www.nexus-gaming.net/forums/index.html'"]
+        Ribbon["#snapshotDate: '14 AUG 2003 · 23:04:15 UTC'"]
+        Table["#virtualBrowserContent:\n• Thread rows with live author links\n• Reply & view counts\n• Last post timestamps"]
+        Sidebar["Right Rail Widgets (index.html):\n• ASK THE GHOST\n• ARCHIVE STATUS\n• SURVIVING ARTIFACTS"]
+
+        ChromeFn --> Title
+        ChromeFn --> URL
+        ChromeFn --> Ribbon
+        RenderFn --> Table
+        World --> Sidebar
+    end
+```
+
+
 
 
 

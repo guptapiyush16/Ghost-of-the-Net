@@ -208,6 +208,18 @@ Project: Ghost of the Internet (Hacktoberfest 2026 · Week 4)
   2. Embedded DEV-specific liquid tags (`{% github ... %}`) and highlighted the "Best Use of Render" category with Infrastructure-as-Code blueprint (`render.yaml`).
 - **Reason**: Ensures 100% compliance with automated contest scrapers, community tagging guidelines, and editorial judging rubrics for Hacktoberfest 2026.
 
+---
+
+### [2026-10-30] Decision 21: Data Model Provenance & In-Memory Virtual Browser Architecture
+- **Context**: The user inquired how the specific historical values, forum threads, view counts, and Wayback capture metadata visible on `ghostofthenet.vercel.app` are sourced and rendered.
+- **Decision**:
+  1. Documented the 3-tier data lifecycle:
+     - **Stage 1 (Archaeological Ingestion & Sanitization)**: How `ingest.js` fetches historical captures from the Internet Archive CDX API and cleans markup with PII masking.
+     - **Stage 2 (Curated Corpus Data Layer)**: How `archiveData.js` acts as an immutable, zero-latency client-side document store defining 3 historical worlds, pages, threads, timeline fade statistics, and BM25 grounding passages.
+     - **Stage 3 (Reactive Virtual Browser DOM Rendering)**: How `ghost-client.js` executes `navigateTo()`, updates browser chrome, and executes parameterized template generators (`renderNexusPage()`) to bind data into the DOM without external database queries.
+- **Reason**: Provides total provenance transparency for judges, developers, and users, demonstrating why client-side in-memory architecture delivers sub-millisecond navigation without API rate limits or privacy leaks.
+
+
 
 
 
